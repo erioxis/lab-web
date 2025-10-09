@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Задача 3</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: left;
+            vertical-align: top;
+        }
+        th {
+            background-color: #f4f4f4;
+            font-weight: bold;
+        }
+        h1 {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Модель OSI и Примеры Протоколов</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>№ Уровня</th>
+                <th>Название уровня</th>
+                <th>Примеры протоколов / технологий</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td rowspan="4">1</td>
+                <td rowspan="4">Физический уровень</td>
+                <td>Ethernet (частично, стандарты физического уровня)</td>
+            </tr>
+            <tr><td>DSL</td></tr>
+            <tr><td>USB (в аспекте передачи данных по кабелю)</td></tr>
+            <tr><td>Bluetooth (частично, радиомодуль)</td></tr>
+
+            <tr>
+                <td rowspan="5">2</td>
+                <td rowspan="5">Канальный уровень</td>
+                <td>Ethernet</td>
+            </tr>
+            <tr><td>Wi-Fi (802.11)</td></tr>
+            <tr><td>PPP (Point-to-Point Protocol)</td></tr>
+            <tr><td>ARP (Address Resolution Protocol)</td></tr>
+            <tr><td>MAC</td></tr>
+
+            <tr>
+                <td rowspan="4">3</td>
+                <td rowspan="4">Сетевой уровень</td>
+                <td>IP (Internet Protocol)</td>
+            </tr>
+            <tr><td>ICMP (Internet Control Message Protocol)</td></tr>
+            <tr><td>OSPF (Open Shortest Path First)</td></tr>
+            <tr><td>BGP (Border Gateway Protocol)</td></tr>
+
+            <tr>
+                <td rowspan="2">4</td>
+                <td rowspan="2">Транспортный уровень</td>
+                <td>TCP (Transmission Control Protocol)</td>
+            </tr>
+            <tr><td>UDP (User Datagram Protocol)</td></tr>
+
+            <tr>
+                <td rowspan="3">5</td>
+                <td rowspan="3">Сеансовый уровень</td>
+                <td>NetBIOS</td>
+            </tr>
+            <tr><td>RPC (Remote Procedure Call)</td></tr>
+            <tr><td>PPTP (Point-to-Point Tunneling Protocol)</td></tr>
+
+            <tr>
+                <td rowspan="5">6</td>
+                <td rowspan="5">Уровень представления</td>
+                <td>SSL/TLS (Secure Sockets Layer/Transport Layer Security)</td>
+            </tr>
+            <tr><td>JPEG</td></tr>
+            <tr><td>MPEG</td></tr>
+            <tr><td>ASCII</td></tr>
+            <tr><td>XDR (External Data Representation)</td></tr>
+
+            <tr>
+                <td rowspan="6">7</td>
+                <td rowspan="6">Прикладной уровень</td>
+                <td>HTTP (Hypertext Transfer Protocol)</td>
+            </tr>
+            <tr><td>FTP (File Transfer Protocol)</td></tr>
+            <tr><td>SMTP (Simple Mail Transfer Protocol)</td></tr>
+            <tr><td>DNS (Domain Name System)</td></tr>
+            <tr><td>SSH (Secure Shell)</td></tr>
+            <tr><td>Telnet</td></tr>
+        </tbody>
+    </table>
+
+</body>
+</html>

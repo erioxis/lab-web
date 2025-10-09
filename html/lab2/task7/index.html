@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Задача 7</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { padding: 0 25px; }
+
+    .grid {
+      display: grid;
+      gap: 23px;
+    }
+
+    .block { height: 100px; }
+    .c1 { background: #00D0FF;}
+    .c2 { background: #00FF90;}
+    .c3 { background: #FFE100;}
+    .c4 { background: #0084FF;}
+    .c5 { background: #00FFD4;}
+    .c6 { background: #00BDAD;}
+    .c7 { background: #FFA600;}
+    .c8 { background: #BF00FF;}
+    .c9 { background: #FFE100;}
+    .c10 { background: #002345;}
+
+    @media (min-width: 1280px) {
+      .grid { grid-template-columns: repeat(12, 1fr); }
+      .c1 { grid-column: span 2; height: 60px;}
+      .c2 { grid-column: span 9; height: 60px;}
+      .c3 { grid-column: span 1; height: 60px;}
+      .c4 { grid-column: span 12;  height: 300px;}
+      .c5 { grid-column: span 4; height: 250px;}
+      .c6 { grid-column: span 4; height: 250px;}
+      .c7 { grid-column: span 4; height: 250px;}
+      .c8 { grid-column: span 6; height: 400px;}
+      .c9 { grid-column: span 6; height: 400px;}
+      .c10 { grid-column: span 12; height: 300px;}
+    }
+
+    @media (max-width: 1279px) and (min-width: 400px) {
+    .grid { 
+        grid-template-columns: repeat(12, 1fr); 
+    }
+      .c1 { grid-column: span 3; height: 60px;}
+      .c2 { grid-column: span 9; height: 60px;}
+      .c3 { display: none;}
+      .c4 { grid-column: span 12; height: 300px;}
+    
+      .c5 { 
+        grid-column: 1 / span 6; 
+        grid-row: 3; 
+        height: 250px;
+    }
+      .c8 { 
+        grid-column: 1 / span 6; 
+        grid-row: 4; 
+        height: 400px;
+    }
+    
+      .c9 { 
+        grid-column: 7 / span 6; 
+        grid-row: 3 / span 2; 
+        height: 673px;
+    }
+    
+      .c6 { display: none}
+      .c7 { display: none}
+      .c10 { grid-column: span 12; height: 300px;}
+    }
+
+    @media (max-width: 399px) {
+      .grid { grid-template-columns: repeat(4, 1fr); }
+      .c1 { grid-column: span 1; height: 60px;}
+      .c2 { grid-column: span 3; height: 60px;}
+      .c3 { display: none;}
+      .c4 { grid-column: span 4; height: 300px;}
+      .c5 { grid-column: span 2; height: 250px;}
+      .c6 { display: none; }
+      .c7 { grid-column: span 2; height: 250px;}
+      .c8 { display: none; }
+      .c9 { grid-column: span 4; height: 400px;}
+      .c10 { grid-column: span 4; height: 300px;}
+    }
+  </style>
+</head>
+<body>
+  <div class="grid">
+    <div class="block c1"></div>
+    <div class="block c2"></div>
+    <div class="block c3"></div>
+    <div class="block c4"></div>
+    <div class="block c5"></div>
+    <div class="block c6"></div>
+    <div class="block c7"></div>
+    <div class="block c8"></div>
+    <div class="block c9"></div>
+    <div class="block c10"></div>
+  </div>
+</body>
+</html>

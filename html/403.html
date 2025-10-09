@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Задача 3</title>
+  <style>
+    body { 
+      font-family: 'Tahoma', 'Arial', sans-serif; 
+      margin: 0;
+      padding: 0;
+      background: #008080 url('back.png') center/cover no-repeat fixed;
+      color: #000;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .window {
+      background-color: #ece9d8;
+      border: 2px solid;
+      border-top-color: #fff;
+      border-left-color: #fff;
+      border-right-color: #808080;
+      border-bottom-color: #808080;
+      padding: 3px;
+      width: 800px;
+      box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+    }
+    
+    .title-bar {
+      background: linear-gradient(to right, #000080, #1084d0);
+      color: white;
+      padding: 3px 6px;
+      font-weight: bold;
+      font-size: 13px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .window-content {
+      padding: 20px;
+      background: #ece9d8;
+    }
+    
+    h1 {
+      color: #000080;
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+    
+    .code-block {
+      background: #d4d0c8;
+      border: 1px solid #808080;
+      padding: 15px;
+      font-family: 'Courier New', monospace;
+      font-size: 12px;
+      line-height: 1.4;
+      margin: 15px 0;
+    }
+    
+    .comment {
+      color: #008000;
+      font-style: italic;
+    }
+    
+    .directive {
+      color: #000080;
+      font-weight: bold;
+    }
+    
+    .value {
+      color: #ff0000;
+    }
+    
+    .bracket {
+      color: #000000;
+    }
+    
+    .content {
+      margin-left: 20px;
+    }
+    
+    .button {
+      background: linear-gradient(to bottom, #d4d0c8, #ece9d8);
+      border: 2px solid;
+      border-top-color: #fff;
+      border-left-color: #fff;
+      border-right-color: #808080;
+      border-bottom-color: #808080;
+      padding: 3px 10px;
+      margin: 10px 0;
+      cursor: pointer;
+      font-family: 'Tahoma';
+      font-size: 11px;
+    }
+    
+    .button:hover {
+      background: linear-gradient(to bottom, #eceae0, #f8f6f0);
+    }
+    
+    .button:active {
+      border-top-color: #808080;
+      border-left-color: #808080;
+      border-right-color: #fff;
+      border-bottom-color: #fff;
+    }
+    
+    .taskbar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to bottom, #245edb, #1d52c1);
+      height: 30px;
+      display: flex;
+      align-items: center;
+      padding: 0 5px;
+      border-top: 1px solid #fff;
+    }
+    
+    .start-button {
+      background: linear-gradient(to bottom, #6ca035, #3d751b);
+      color: white;
+      padding: 4px 10px;
+      border: 1px solid;
+      border-top-color: #fff;
+      border-left-color: #fff;
+      border-right-color: #2d4f0f;
+      border-bottom-color: #2d4f0f;
+      font-weight: bold;
+      margin-right: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="window">
+    <div class="title-bar">
+      <span>Задача 3</span>
+      <span style="font-family: 'Arial'; font-size: 16px;">_ □ X</span>
+    </div>
+    <div class="window-content">
+      <button class="button" onclick="location.href='/lab2/'">← Назад к списку заданий</button>
+      
+      <h1>Конфигурация nginx для обработки ошибки 403</h1>
+      
+      <div class="code-block">
+        <span class="comment"># --- ДОСТУП ЗАПРЕЩЕН ---</span><br>
+        <span class="directive">error_page</span> <span class="value">403</span> <span class="value">/403.html</span>;<br>
+        <br>
+        <span class="directive">location</span> <span class="bracket">=</span> <span class="value">/403.html</span> <span class="bracket">{</span><br>
+        <div class="content">
+          <span class="directive">internal</span>;<br>
+        </div>
+        <span class="bracket">}</span>
+      </div>
+      
+    </div>
+  </div>
+  
+  <div class="taskbar">
+    <div class="start-button">Пуск</div>
+  </div>
+</body>
+</html>

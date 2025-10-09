@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Задача 4</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-family: Arial, sans-serif;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: left;
+            vertical-align: top;
+        }
+        th {
+            background-color: #f4f4f4;
+            font-weight: bold;
+        }
+        img {
+            max-width: 150px;
+            height: auto;
+            border: 1px solid #ccc;
+            margin: 5px;
+        }
+        caption {
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<table>
+    <caption>Основные физические топологии сети</caption>
+    <thead>
+        <tr>
+            <th>Номер</th>
+            <th>Рисунок</th>
+            <th>Краткое описание</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td><img src="1.png" alt="Топология Шина"></td>
+            <td>Все устройства подключены к одному общему кабелю (магистрали). Данные передаются по шине, и каждое устройство проверяет, предназначены ли данные ему.</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td><img src="2.png" alt="Топология Звезда"></td>
+            <td>Все устройства подключены к центральному узлу (например, коммутатору или концентратору). Вся передача данных идёт через центральный узел.</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td><img src="3.png" alt="Топология Кольцо"></td>
+            <td>Устройства соединены последовательно в замкнутое кольцо. Данные передаются по кругу от одного устройства к другому до достижения адресата.</td>
+        </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

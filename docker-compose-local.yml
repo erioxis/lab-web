@@ -1,0 +1,24 @@
+# Универсальный docker-compose-local.yml для статических работ
+services:
+  nginx-server:
+    # Имя контейнера. 
+    # Пример: local-static-server
+    container_name: local-static-server
+    
+    image: nginx:alpine
+    restart: unless-stopped
+    
+    # Секция 'ports' для локальной разработки.
+    # Позволяет получить доступ к сайту по http://localhost:8080
+   
+    ports:
+      - "8080:80"
+    volumes:
+      # Монтируем контент сайта
+      - "./html:/usr/share/nginx/html:ro"
+      
+      # Монтируем ФАЙЛ конфига Nginx
+      - "./config/nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro"
+      
+      # Монтируем ФАЙЛ паролей
+      - "./config/nginx/.htpasswd:/etc/nginx/conf.d/.htpasswd:ro"

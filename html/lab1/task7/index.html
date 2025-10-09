@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Задача 7</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        th, td {
+            border: 1px solid #333;
+            padding: 10px;
+            text-align: center;
+        }
+        
+        th {
+            background-color: #3865b8;
+            color: white;
+        }
+        
+        .time {
+            background-color: #c8d3f1;
+            font-weight: bold;
+        }
+        
+        .day-header {
+            background-color: #87CEEB;
+            font-weight: bold;
+        }
+        
+        .week-links {
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .week-links a {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 0 10px;
+            background-color: #21f379;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+        }
+        
+        .week-links a:hover {
+            background-color: #19d257;
+        }
+        
+        .week-section {
+            margin: 30px 0;
+        }
+
+        .yl {
+            background-color: rgb(255, 213, 122);
+        }
+    </style>
+</head>
+<body>
+    <h1>Задание 7</h1>
+    
+    <div class="week-links">
+        <a href="#week1">1 неделя</a>
+        <a href="#week2">2 неделя</a>
+    </div>
+    
+    <div id="week1" class="week-section">
+        <h1>1 неделя</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Время</th>
+                    <th>Понедельник</th>
+                    <th>Вторник</th>
+                    <th>Среда</th>
+                    <th>Четверг</th>
+                    <th>Пятница</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="time">8:00-9:30</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td class="time">9:45-11:15</td>
+                    <td class="yl">Технология облачных вычислений<br>Лытнев Н.Н.<br>403эк</td>
+                    <td>-</td>
+                    <td>Информационный менеджмент<br>Минина Е.А.<br>408эк</td>
+                    <td>Основы Web-инжиниринга<br>Чемарина А.В.<br>103эк</td>
+                    <td>Администрирование информационных систем<br>Лытнев Н.Н.<br>101эк</td>
+                </tr>
+                <tr>
+                    <td class="time">11:30-13:00</td>
+                    <td class="yl">Корпоративные информационные системы<br>Вострокнутов А.Е.<br>403эк</td>
+                    <td>Технология облачных вычислений<br>Лытнев Н.Н.<br>103эк</td>
+                    <td>Корпоративные информационные системы<br>Вострокнутов А.Е.<br>408эк</td>
+                    <td>Технология облачных вычислений<br>Лытнев Н.Н.<br>303эк</td>
+                    <td>Основы Web-инжиниринга<br>Чемарина А.В.<br>307эк</td>
+                </tr>
+                <tr>
+                    <td class="time">13:50-15:20</td>
+                    <td>-</td>
+                    <td class="yl">Администрирование информационных систем<br>Лаптев С.В.<br>314гд</td>
+                    <td class="yl">Информационный менеджмент<br>Барановская Т.П.<br>408эк</td>
+                    <td class="yl">Основы Web-инжиниринга<br>Креймер А.С.<br>221гл</td>
+                    <td>Информационный менеджмент<br>Минина Е.А.<br>408эк</td>
+                </tr>
+                <tr>
+                    <td class="time">15:35-17:05</td>
+                    <td>-</td>
+                    <td>Администрирование информационных систем<br>Лытнев Н.Н.<br>103эк</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <div id="week2" class="week-section">
+        <h1>2 неделя</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Время</th>
+                    <th>Понедельник</th>
+                    <th>Вторник</th>
+                    <th>Среда</th>
+                    <th>Четверг</th>
+                    <th>Пятница</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="time">8:00-9:30</td>
+                    <td>Администрирование информационных систем<br>Лытнев Н.Н.<br>307эк</td>
+                    <td>Технология облачных вычислений<br>Лытнев Н.Н.<br>108эк</td>
+                    <td>Технология облачных вычислений<br>Лытнев Н.Н.<br>108эк</td>
+                    <td class="yl">Основы Web-инжиниринга<br>Креймер А.С.<br>221гл</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td class="time">9:45-11:15</td>
+                    <td class="yl">Корпоративные информационные системы<br>Вострокнутов А.Е.<br>403эк
+                    <td>Основы Web-инжиниринга<br>Чемарина А.В.<br>307эк</td>
+                    <td class="yl">Технология облачных вычислений<br>Лытнев Н.Н.<br>403эк</td>
+                    <td>Основы Web-инжиниринга<br>Чемарина А.В.<br>103эк</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td class="time">11:30-13:00</td>
+                    <td>Информационный менеджмент<br>Минина Е.А.<br>404эк</td>
+                    <td>Информационный менеджмент<br>Минина Е.А.<br>404эк</td>
+                    <td class="yl">Информационный менеджмент<br>Барановская Т.П.<br>310эк</td>
+                    <td class="yl">Администрирование информационных систем<br>Лаптев С.В.<br>314гд</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td class="time">13:50-15:20</td>
+                    <td>-</td>
+                    <td>Корпоративные информационные системы<br>Вострокнутов А.Е.<br>408эк</td>
+                    <td>Корпоративные информационные системы<br>Вострокнутов А.Е.<br>408эк</td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+    
+    <div class="week-links">
+        <a href="#week1">1 неделя</a>
+        <a href="#week2">2 неделя</a>
+    </div>
+</body>
+</html>

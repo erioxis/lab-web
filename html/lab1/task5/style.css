@@ -1,0 +1,58 @@
+body {
+    font-family: Arial, sans-serif;
+    color: #333;
+    line-height: 1.6;
+    margin: 20px;
+}
+
+h3 {
+    color: orange;
+    margin-top: 0;
+}
+
+.topic {
+    color: #4a90e2;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.text {
+    margin: 15px 0;
+}
+
+.highlight {
+    font-weight: bold;
+}
+
+.highlightred {
+    color: red;
+    font-weight: bold;
+}
+
+.highlightgreen {
+    color: green;
+    font-weight: bold;
+}
+
+.highlightcyan {
+    color: rgb(0, 225, 255);
+    font-weight: bold;
+}
+
+.note {
+    color: #e74c3c;
+    font-style: italic;
+}
+
+.bluenumbers {
+    color: blue;
+}
+
+.textup {
+    font-size: 24px;
+}
+
+.container {
+    background-color: rgba(190, 190, 190, 0.377);
+    border-top: 3px solid rgb(78, 78, 78);
+}

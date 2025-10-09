@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Задача 6</title>
+  <style>
+    body { 
+      font-family: 'Tahoma', 'Arial', sans-serif; 
+      margin: 0;
+      padding: 0;
+      background: #008080 url('back.png') center/cover no-repeat fixed;
+      color: #000;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .window {
+      background-color: #ece9d8;
+      border: 2px solid;
+      border-top-color: #fff;
+      border-left-color: #fff;
+      border-right-color: #808080;
+      border-bottom-color: #808080;
+      padding: 3px;
+      width: 900px;
+      box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+    }
+    
+    .title-bar {
+      background: linear-gradient(to right, #000080, #1084d0);
+      color: white;
+      padding: 3px 6px;
+      font-weight: bold;
+      font-size: 13px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .window-content {
+      padding: 20px;
+      background: #ece9d8;
+    }
+    
+    h1 {
+      color: #000080;
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+    
+    .description {
+      text-align: center;
+      margin-bottom: 25px;
+      padding: 10px;
+      background: #d4d0c8;
+      border: 1px solid #808080;
+    }
+    
+    .macets-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+      margin: 20px 0;
+    }
+    
+    .macet-card {
+      background: #d4d0c8;
+      border: 1px solid #808080;
+      padding: 10px;
+      text-align: center;
+    }
+    
+    .macet-header {
+      background: linear-gradient(to right, #000080, #1084d0);
+      color: white;
+      padding: 8px;
+      font-weight: bold;
+      margin: -10px -10px 10px -10px;
+    }
+    
+    .macet-link {
+      display: block;
+      background: linear-gradient(to bottom, #d4d0c8, #ece9d8);
+      border: 2px solid;
+      border-top-color: #fff;
+      border-left-color: #fff;
+      border-right-color: #808080;
+      border-bottom-color: #808080;
+      padding: 8px 15px;
+      margin: 10px 0;
+      cursor: pointer;
+      text-decoration: none;
+      color: #000;
+      font-size: 11px;
+    }
+    
+    .macet-link:hover {
+      background: linear-gradient(to bottom, #eceae0, #f8f6f0);
+    }
+    
+    .macet-link:active {
+      border-top-color: #808080;
+      border-left-color: #808080;
+      border-right-color: #fff;
+      border-bottom-color: #fff;
+    }
+    
+    .macet-image {
+      width: 100%;
+      border: 1px solid #808080;
+      margin: 10px 0;
+    }
+    
+    .device-badge {
+      background: #ece9d8;
+      border: 1px solid #808080;
+      padding: 5px 10px;
+      font-size: 10px;
+      margin-top: 5px;
+    }
+    
+    .button {
+      background: linear-gradient(to bottom, #d4d0c8, #ece9d8);
+      border: 2px solid;
+      border-top-color: #fff;
+      border-left-color: #fff;
+      border-right-color: #808080;
+      border-bottom-color: #808080;
+      padding: 3px 10px;
+      margin: 10px 5px;
+      cursor: pointer;
+      font-family: 'Tahoma';
+      font-size: 11px;
+    }
+    
+    .button:hover {
+      background: linear-gradient(to bottom, #eceae0, #f8f6f0);
+    }
+    
+    .button:active {
+      border-top-color: #808080;
+      border-left-color: #808080;
+      border-right-color: #fff;
+      border-bottom-color: #fff;
+    }
+    
+    .navigation {
+      text-align: center;
+      margin-top: 20px;
+    }
+    
+    .taskbar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to bottom, #245edb, #1d52c1);
+      height: 30px;
+      display: flex;
+      align-items: center;
+      padding: 0 5px;
+      border-top: 1px solid #fff;
+    }
+    
+    .start-button {
+      background: linear-gradient(to bottom, #6ca035, #3d751b);
+      color: white;
+      padding: 4px 10px;
+      border: 1px solid;
+      border-top-color: #fff;
+      border-left-color: #fff;
+      border-right-color: #2d4f0f;
+      border-bottom-color: #2d4f0f;
+      font-weight: bold;
+      margin-right: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="window">
+    <div class="title-bar">
+      <span>Задача 6 - Макеты и скриншоты</span>
+      <span style="font-family: 'Arial'; font-size: 16px;">_ □ X</span>
+    </div>
+    <div class="window-content">
+      <button class="button" onclick="location.href='/lab2/'">← Назад к списку заданий</button>
+      
+      <h1>Ссылки на макеты и их скриншоты</h1>
+      
+      <div class="macets-grid">
+        <div class="macet-card">
+          <div class="macet-header">Макет 1</div>
+          <a href="https://www.figma.com/design/3KzVCbp62b91rOnjynBEpM/Untitled?node-id=1-25&t=BV6qphkiRbnR45o0-1" 
+             target="_blank" class="macet-link">Открыть в Figma</a>
+          <img src="1.png" alt="Скриншот макета 1" class="macet-image">
+          <div class="device-badge">1280-80-20-12</div>
+        </div>
+
+        <div class="macet-card">
+          <div class="macet-header">Макет 2</div>
+          <a href="https://www.figma.com/design/3KzVCbp62b91rOnjynBEpM/Untitled?node-id=1-26&t=BV6qphkiRbnR45o0-1" 
+             target="_blank" class="macet-link">Открыть в Figma</a>
+          <img src="2.png" alt="Скриншот макета 2" class="macet-image">
+          <div class="device-badge">810-40-20-12</div>
+        </div>
+
+        <div class="macet-card">
+          <div class="macet-header">Макет 3</div>
+          <a href="https://www.figma.com/design/3KzVCbp62b91rOnjynBEpM/Untitled?node-id=1-27&t=BV6qphkiRbnR45o0-1" 
+             target="_blank" class="macet-link">Открыть в Figma</a>
+          <img src="3.png" alt="Скриншот макета 3" class="macet-image">
+          <div class="device-badge">400-80-20-4</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="taskbar">
+    <div class="start-button">Пуск</div>
+  </div>
+</body>
+</html>

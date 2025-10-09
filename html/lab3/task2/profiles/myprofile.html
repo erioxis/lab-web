@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Резюме Ярощука Павла</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body { 
+      font-family: 'Tahoma', 'Arial', sans-serif; 
+      margin: 0;
+      padding: 0;
+      background: #008080 url('back.png') center/cover no-repeat fixed;
+      color: #000;
+      min-height: 100vh;
+      overflow: auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .desktop {
+      padding: 20px;
+      height: calc(100vh - 40px);
+      position: relative;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .window {
+      background-color: #ece9d8;
+      border: 2px solid;
+      border-top-color: #fff;
+      border-left-color: #fff;
+      border-right-color: #808080;
+      border-bottom-color: #808080;
+      padding: 3px;
+      width: 700px;
+      box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .title-bar {
+      background: linear-gradient(to right, #000080, #1084d0);
+      color: white;
+      padding: 3px 6px;
+      font-weight: bold;
+      font-size: 13px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .window-content {
+      padding: 25px;
+      background: #ece9d8;
+    }
+
+    h1 {
+      color: #000080;
+      text-align: center;
+      margin-top: 0;
+      font-size: 22px;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      text-align: center;
+      font-size: 14px;
+      color: #000080;
+      margin-bottom: 25px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #808080;
+    }
+
+    .section {
+      margin-bottom: 25px;
+      background: #d4d0c8;
+      border: 1px solid #808080;
+      padding: 15px;
+    }
+
+    h2 {
+      font-weight: bold;
+      font-size: 16px;
+      color: #000080;
+      margin-bottom: 12px;
+      position: relative;
+      padding-bottom: 4px;
+    }
+
+    h2::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 40px;
+      height: 1px;
+      background: #808080;
+    }
+
+    p {
+      margin-bottom: 10px;
+      font-size: 14px;
+      color: #000;
+      line-height: 1.5;
+    }
+
+    ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    li {
+      margin-bottom: 8px;
+      padding-left: 20px;
+      position: relative;
+      color: #000;
+      font-size: 14px;
+    }
+
+    li::before {
+      content: "■";
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: #000080;
+      font-size: 10px;
+    }
+
+    .contact-info {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 12px;
+    }
+
+    .contact-item {
+      font-size: 13px;
+      color: #000;
+      display: flex;
+      align-items: center;
+      background: #ece9d8;
+      padding: 4px 8px;
+      border: 1px solid #808080;
+    }
+
+    .taskbar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to bottom, #245edb, #1d52c1);
+      height: 30px;
+      display: flex;
+      align-items: center;
+      padding: 0 5px;
+      border-top: 1px solid #fff;
+    }
+
+    .start-button {
+      background: linear-gradient(to bottom, #6ca035, #3d751b);
+      color: white;
+      padding: 4px 10px;
+      border: 1px solid;
+      border-top-color: #fff;
+      border-left-color: #fff;
+      border-right-color: #2d4f0f;
+      border-bottom-color: #2d4f0f;
+      font-weight: bold;
+      margin-right: 10px;
+    }
+
+    @media (max-width: 768px) {
+      .window {
+        width: 95%;
+        margin: 20px;
+      }
+      
+      .contact-info {
+        flex-direction: column;
+        gap: 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="desktop">
+    <div class="window">
+      <div class="title-bar">
+        <span>Резюме Ярощука Павла</span>
+        <span style="font-family: 'Arial'; font-size: 16px;">_ □ X</span>
+      </div>
+      <div class="window-content">
+        <h1>Ярощук Павел Александрович</h1>
+        <div class="subtitle">Backend-разработчик • Студент ИТ2203</div>
+
+        <div class="section">
+          <h2>Обо мне</h2>
+          <p>
+            Студент IT-направления с фокусом на backend-разработку. 
+            Пишу на C# и .NET. 
+            Ценю чистую архитектуру, производительность и надежные решения.
+          </p>
+        </div>
+
+        <div class="section">
+          <h2>Навыки</h2>
+          <ul>
+            <li>C#, .NET, ASP.NET Core</li>
+            <li>SQL Server</li>
+            <li>REST API, микросервисная архитектура</li>
+            <li>Git, командная разработка</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h2>Контакты</h2>
+          <div class="contact-info">
+            <div class="contact-item">✉️ erioxis@vk.com</div>
+            <div class="contact-item">🌐 github.com/erioxis</div>
+            <div class="contact-item">📍 Краснодар, Россия</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="taskbar">
+    <div class="start-button">Пуск</div>
+  </div>
+</body>
+</html>

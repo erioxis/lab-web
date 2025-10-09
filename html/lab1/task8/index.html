@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Задача 8</title>
+    <link rel="stylesheet" href="css/pico.min.css">
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        th {
+            background-color: var(--pico-background-color);
+            color: #000;
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #000;
+        }
+        
+        td {
+            padding: 8px;
+            border: 1px solid #000;
+        }
+        
+        .semester {
+            background-color: #fff;
+            vertical-align: top;
+        }
+
+        .red {
+            background-color: #ff0000;
+        }
+
+        .yellow {
+            background-color: #f1d94c;
+        }
+
+
+    </style>
+</head>
+<body>
+    <h1>Задание 8</h1>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Семестр</th>
+                <th>Дисциплина</th>
+                <th>ФИО преподавателя</th>
+                <th>Вид контроля</th>
+                <th>Оценка, зачёт</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td rowspan="9" class="semester">1</td>
+                <td class="yellow">Архитектура информационных систем</td>
+                <td class="yellow">Бардин А.К.</td>
+                <td class="yellow">Дифф. зачет</td>
+                <td class="yellow">4 (Хорошо.)</td>
+            </tr>
+            <tr>
+                <td>Иностранный язык</td>
+                <td>Карипиди А.Г.</td>
+                <td>Зачёт</td>
+                <td>Зачтено</td>
+            </tr>
+            <tr>
+                <td class="yellow">Компьютерные системы</td>
+                <td class="yellow">Сергеев А.Э.</td>
+                <td class="yellow">Курсовой проект</td>
+                <td class="yellow">4 (хорошо)</td>
+            </tr>
+            <tr>
+                <td class="yellow">Компьютерные системы</td>
+                <td class="yellow">Сергеев А.Э.</td>
+                <td class="yellow">Экзамен</td>
+                <td class="yellow">4 (хорошо.)</td>
+            </tr>
+            <tr>
+                <td class="yellow">Микроэлектроника и схемотехника</td>
+                <td class="yellow">Параскевов А.В.</td>
+                <td class="yellow">Экзамен</td>
+                <td class="yellow">4 (хорошо)</td>
+            </tr>
+            <tr>
+                <td class="yellow">Управление данными</td>
+                <td class="yellow">Русак С.Н.</td>
+                <td class="yellow">Курсовой проект</td>
+                <td class="yellow">4 (хорошо)</td>
+            </tr>
+            <tr>
+                <td class="yellow">Управление данными</td>
+                <td class="yellow">Русак С.Н.</td>
+                <td class="yellow">Экзамен</td>
+                <td class="yellow">4 (хорошо)</td>
+            </tr>
+            <tr>
+                <td>Элективные курсы по физической культуре и спорту</td>
+                <td>Ильин В.В.</td>
+                <td>Зачёт</td>
+                <td>Зачтено</td>
+            </tr>
+            <tr>
+                <td class="yellow">Языки программирования</td>
+                <td class="yellow">Мурлин А.Г.</td>
+                <td class="yellow">Экзамен</td>
+                <td class="yellow">4 (хорошо)</td>
+            </tr>
+
+            <tr>
+                <td rowspan="10" class="semester">2</td>
+                <td class="yellow">Большие данные</td>
+                <td class="yellow">Параскевов А.В.</td>
+                <td class="yellow">Экзамен</td>
+                <td class="yellow">4 (хорошо)</td>
+            </tr>
+            <tr>
+                <td>Иностранный язык</td>
+                <td>Мосесова Э.</td>
+                <td>Зачёт</td>
+                <td>Зачтено</td>
+            </tr>
+            <tr>
+                <td class="yellow">Инфокоммуникационные системы и сети</td>
+                <td class="yellow">Крепышев Д.А.</td>
+                <td class="yellow">Дифф. Зачет</td>
+                <td class="yellow">4 (хорошо)</td>
+            </tr>
+            <tr>
+                <td class="yellow">Методы и средства проектирования информационных систем и технологий</td>
+                <td class="yellow">Тюнин Е.Б.</td>
+                <td class="yellow">Курсовой проект</td>
+                <td class="yellow">4 (хорошо)</td>
+            </tr>
+            <tr>
+                <td class="yellow">Методы и средства проектирования информационных систем и технологий</td>
+                <td class="yellow">Тюнин Е.Б.</td>
+                <td class="yellow">Экзамен</td>
+                <td class="yellow">4 (хорошо)</td>
+            </tr>
+            <tr>
+                <td>Методы искусственного интеллекта</td>
+                <td>Луценко Е.В.</td>
+                <td>Зачёт</td>
+                <td>Зачтено</td>
+            </tr>
+            <tr>
+                <td>Микропроцессоры</td>
+                <td>Параскевов А.В.</td>
+                <td>Зачёт</td>
+                <td>Зачтено</td>
+            </tr>
+            <tr>
+                <td class="yellow">Операционные системы</td>
+                <td class="yellow">Бардин А.К.</td>
+                <td class="yellow">Экзамен</td>
+                <td class="yellow">4 (хорошо)</td>
+            </tr>
+            <tr>
+                <td class="yellow">Системное программное обеспечение</td>
+                <td class="yellow">Мурлин А.Г.</td>
+                <td class="yellow">Экзамен</td>
+                <td class="yellow">4 (хорошо)</td>
+            </tr>
+            <tr>
+                <td>Элективные курсы по физической культуре и спорту</td>
+                <td>Ильин В.В.</td>
+                <td>Зачёт</td>
+                <td>Зачтено</td>
+            </tr>
+
+            <tr>
+                <td rowspan="8" class="semester">3</td>
+                <td>Администрирование информационных систем</td>
+                <td>Лаптев С.В.</td>
+                <td>Зачёт</td>
+                <td>Зачтено</td>
+            </tr>
+            <tr>
+                <td class="red">Иностранный язык</td>
+                <td class="red">Мосесова Э.</td>
+                <td class="red">Экзамен</td>
+                <td class="red">3 (удовлетворительно)</td>
+            </tr>
+            <tr>
+                <td class="yellow">Инфокоммуникационные системы и сети</td>
+                <td class="yellow">Крепышев Д.А.</td>
+                <td class="yellow">Экзамен</td>
+                <td class="yellow">4 (хорошо)</td>
+            </tr>
+            <tr>
+                <td class="yellow">Микропроцессоры</td>
+                <td class="yellow">Параскевов А.В.</td>
+                <td class="yellow">Экзамен</td>
+                <td class="yellow">4 (хорошо.)</td>
+            </tr>
+            <tr>
+                <td class="yellow">Мультимедиа технологии</td>
+                <td class="yellow">Вострокнутов А.Е.</td>
+                <td class="yellow">Экзамен</td>
+                <td class="yellow">4 (хорошо)</td>
+            </tr>
+            <tr>
+                <td class="yellow">Разработка приложений под мобильные устройства</td>
+                <td class="yellow">Сайкинов В.Е.</td>
+                <td class="yellow">Дифф. зачет</td>
+                <td class="yellow">4 (хорошо)</td>
+            </tr>
+            <tr>
+                <td class="yellow">Системы и системный анализ</td>
+                <td class="yellow">Барановская Т.П.</td>
+                <td class="yellow">Экзамен</td>
+                <td class="yellow">4 (хорошо)</td>
+            </tr>
+            <tr>
+                <td>Элективные курсы по физической культуре и спорту</td>
+                <td>Ильин В.В.</td>
+                <td>Зачёт</td>
+                <td>Зачтено</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

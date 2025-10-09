@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Задача 8</title>
+    <style>
+        body { 
+            font-family: 'Tahoma', 'Arial', sans-serif; 
+            margin: 0;
+            padding: 0;
+            background: #008080 url('back.png') center/cover no-repeat fixed;
+            min-height: 100vh;
+        }
+        
+        .window {
+            background-color: #ece9d8;
+            border: 2px solid;
+            border-top-color: #fff;
+            border-left-color: #fff;
+            border-right-color: #808080;
+            border-bottom-color: #808080;
+            padding: 3px;
+            width: 600px;
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        .title-bar {
+            background: linear-gradient(to right, #000080, #1084d0);
+            color: white;
+            padding: 3px 6px;
+            font-weight: bold;
+            font-size: 13px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .window-content {
+            padding: 30px;
+            background: #ece9d8;
+            text-align: center;
+        }
+        
+        .color-name {
+            font-size: 3rem;
+            font-weight: 700;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            padding: 30px;
+            border-radius: 5px;
+            margin: 20px 0;
+            border: 2px solid #808080;
+            transition: background-color 0.5s ease;
+        }
+        
+        .info {
+            margin-top: 25px;
+            color: #000;
+            font-size: 14px;
+            padding: 10px;
+            background: #d4d0c8;
+            border: 1px solid #808080;
+        }
+        
+        .button {
+            background: linear-gradient(to bottom, #d4d0c8, #ece9d8);
+            border: 2px solid;
+            border-top-color: #fff;
+            border-left-color: #fff;
+            border-right-color: #808080;
+            border-bottom-color: #808080;
+            padding: 3px 10px;
+            margin: 10px 5px;
+            cursor: pointer;
+            font-family: 'Tahoma';
+            font-size: 11px;
+        }
+        
+        .button:hover {
+            background: linear-gradient(to bottom, #eceae0, #f8f6f0);
+        }
+        
+        .button:active {
+            border-top-color: #808080;
+            border-left-color: #808080;
+            border-right-color: #fff;
+            border-bottom-color: #fff;
+        }
+        
+        .taskbar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to bottom, #245edb, #1d52c1);
+            height: 30px;
+            display: flex;
+            align-items: center;
+            padding: 0 5px;
+            border-top: 1px solid #fff;
+        }
+        
+        .start-button {
+            background: linear-gradient(to bottom, #6ca035, #3d751b);
+            color: white;
+            padding: 4px 10px;
+            border: 1px solid;
+            border-top-color: #fff;
+            border-left-color: #fff;
+            border-right-color: #2d4f0f;
+            border-bottom-color: #2d4f0f;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        @media (max-width: 300px) {
+            .color-name {
+                background-color: #1abc9c; 
+            }
+            .color-name::after {
+                content: "Green Sea";
+            }
+        }
+        
+        @media (min-width: 301px) and (max-width: 750px) {
+            .color-name {
+                background-color: #2ecc71; 
+            }
+            .color-name::after {
+                content: "Emerald";
+            }
+        }
+        
+        @media (min-width: 751px) and (max-width: 1200px) {
+            .color-name {
+                background-color: #3498db; 
+            }
+            .color-name::after {
+                content: "Peter River";
+            }
+        }
+        
+        @media (min-width: 1201px) and (max-width: 1800px) {
+            .color-name {
+                background-color: #9b59b6; 
+            }
+            .color-name::after {
+                content: "Amethyst";
+            }
+        }
+        
+        @media (min-width: 1801px) {
+            .color-name {
+                background-color: #34495e; 
+            }
+            .color-name::after {
+                content: "Wet Asphalt";
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="window">
+        <div class="title-bar">
+            <span>Задача 8 - Адаптивные цвета</span>
+            <span style="font-family: 'Arial'; font-size: 16px;">_ □ X</span>
+        </div>
+        <div class="window-content">
+            <button class="button" onclick="location.href='/lab2/'">← Назад к списку заданий</button>
+            
+            <div class="color-name"></div>
+            
+            <div class="info">
+                Измените размер окна браузера, чтобы увидеть смену цвета фона
+            </div>
+            
+        </div>
+    </div>
+    
+    <div class="taskbar">
+        <div class="start-button">Пуск</div>
+    </div>
+</body>
+</html>

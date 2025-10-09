@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Мои лабораторные работы: Ярощук Павел Александрович, группа ИТ2203</title>
+    <style>
+        body { 
+            font-family: 'Tahoma', 'Arial', sans-serif; 
+            margin: 0;
+            padding: 0;
+            background: #008080 url('back.png') center/cover no-repeat fixed;
+            color: #000;
+            min-height: 100vh;
+            overflow: auto;
+        }
+        .desktop {
+            padding: 20px;
+            height: calc(100vh - 40px);
+            position: relative;
+        }
+        .window {
+            background-color: #ece9d8;
+            border: 2px solid;
+            border-top-color: #fff;
+            border-left-color: #fff;
+            border-right-color: #808080;
+            border-bottom-color: #808080;
+            padding: 3px;
+            position: absolute;
+            top: 50px;
+            left: 50px;
+            width: 600px;
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+        }
+        .title-bar {
+            background: linear-gradient(to right, #000080, #1084d0);
+            color: white;
+            padding: 3px 6px;
+            font-weight: bold;
+            font-size: 13px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .window-content {
+            padding: 15px;
+            background: #ece9d8;
+        }
+        h1 {
+            color: #000080;
+            text-align: center;
+            margin-top: 0;
+            font-size: 18px;
+        }
+        .student-info {
+            text-align: center;
+            margin-bottom: 20px;
+            padding: 8px;
+            background: #d4d0c8;
+            border: 1px solid #808080;
+        }
+        .labs-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+        .lab-item {
+            text-align: center;
+            cursor: pointer;
+            padding: 10px 5px;
+            border: 1px solid transparent;
+        }
+        .lab-item:hover {
+            background-color: #316ac5;
+            color: white;
+            border: 1px dotted #316ac5;
+        }
+        .lab-icon {
+            width: 48px;
+            height: 48px;
+            margin: 0 auto 5px;
+            background: url('folder.png') center/contain no-repeat;
+        }
+        .lab-title {
+            font-size: 12px;
+            text-decoration: none;
+            color: black;
+        }
+        .lab-item:hover .lab-title {
+            color: white;
+        }
+        .taskbar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to bottom, #245edb, #1d52c1);
+            height: 30px;
+            display: flex;
+            align-items: center;
+            padding: 0 5px;
+            border-top: 1px solid #fff;
+        }
+        .start-button {
+            background: linear-gradient(to bottom, #6ca035, #3d751b);
+            color: white;
+            padding: 4px 10px;
+            border: 1px solid;
+            border-top-color: #fff;
+            border-left-color: #fff;
+            border-right-color: #2d4f0f;
+            border-bottom-color: #2d4f0f;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        .progress-info {
+            background: #d4d0c8;
+            border: 1px solid #808080;
+            padding: 10px;
+            margin: 15px 0;
+            font-size: 14px;
+        }
+        .progress-info h3 {
+            margin: 0 0 8px 0;
+            color: #000080;
+            font-size: 14px;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px;
+            background: #d4d0c8;
+            border: 1px solid #808080;
+            font-size: 12px;
+        }
+        .paperclip-container {
+            position: absolute;
+            bottom: 100px;
+            right: 50px;
+            z-index: 100;
+        }
+        .paperclip {
+            width: 80px;
+            height: 120px;
+            background: url('skrep.png') center/contain no-repeat;
+            position: relative;
+            cursor: pointer;
+        }
+        .hackerrank-info {
+            position: absolute;
+            bottom: 120px;
+            right: 0;
+            width: 250px;
+            background: #ffffcc;
+            border: 2px solid #000;
+            padding: 10px;
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+            display: none;
+            font-size: 12px;
+            z-index: 101;
+        }
+        .hackerrank-info:before {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            right: 30px;
+            border-width: 10px 10px 0;
+            border-style: solid;
+            border-color: #000 transparent transparent;
+        }
+        .hackerrank-info:after {
+            content: "";
+            position: absolute;
+            bottom: -7px;
+            right: 31px;
+            border-width: 9px 9px 0;
+            border-style: solid;
+            border-color: #ffffcc transparent transparent;
+        }
+        .paperclip:hover .hackerrank-info {
+            display: block;
+        }
+        .hackerrank-stats {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="desktop">
+        <div class="window">
+            <div class="title-bar">
+                <span>Мои лабораторные работы</span>
+                <span style="font-family: 'Arial'; font-size: 16px;">_ □ X</span>
+            </div>
+            <div class="window-content">
+                <div class="student-info">
+                    <h2>Ярощук Павел Александрович</h2>
+                    <p>Группа: ИТ2203</p>
+                </div>
+                
+                <div class="progress-info">
+                    <h3>Прогресс по лабораторным работам</h3>
+                    <p>Сдано работ: <strong>3/12</strong> на <strong>07.10.25</strong></p>
+                </div>
+                
+                <h1>Мои лабораторные работы</h1>
+                <div class="labs-grid">
+                    <div class="lab-item" onclick="location.href='/lab1/'">
+                        <div class="lab-icon"></div>
+                        <div class="lab-title">Лабораторная 1</div>
+                    </div>
+                    <div class="lab-item" onclick="location.href='/lab2/'">
+                        <div class="lab-icon"></div>
+                        <div class="lab-title">Лабораторная 2</div>
+                    </div>
+                    <div class="lab-item" onclick="location.href='/lab3/'">
+                        <div class="lab-icon"></div>
+                        <div class="lab-title">Лабораторная 3</div>
+                    </div>
+                    <div class="lab-item" onclick="location.href='/lab4/'">
+                        <div class="lab-icon"></div>
+                        <div class="lab-title">Лабораторная 4</div>
+                    </div>
+                    <div class="lab-item" onclick="location.href='/lab5/'">
+                        <div class="lab-icon"></div>
+                        <div class="lab-title">Лабораторная 5</div>
+                    </div>
+                    <div class="lab-item" onclick="location.href='/lab6/'">
+                        <div class="lab-icon"></div>
+                        <div class="lab-title">Лабораторная 6</div>
+                    </div>
+                    <div class="lab-item" onclick="location.href='/lab7/'">
+                        <div class="lab-icon"></div>
+                        <div class="lab-title">Лабораторная 7</div>
+                    </div>
+                    <div class="lab-item" onclick="location.href='/lab8/'">
+                        <div class="lab-icon"></div>
+                        <div class="lab-title">Лабораторная 8</div>
+                    </div>
+                    <div class="lab-item" onclick="location.href='/lab9/'">
+                        <div class="lab-icon"></div>
+                        <div class="lab-title">Лабораторная 9</div>
+                    </div>
+                    <div class="lab-item" onclick="location.href='/lab10/'">
+                        <div class="lab-icon"></div>
+                        <div class="lab-title">Лабораторная 10</div>
+                    </div>
+                    <div class="lab-item" onclick="location.href='/lab11/'">
+                        <div class="lab-icon"></div>
+                        <div class="lab-title">Лабораторная 11</div>
+                    </div>
+                    <div class="lab-item" onclick="location.href='/lab12/'">
+                        <div class="lab-icon"></div>
+                        <div class="lab-title">Лабораторная 12</div>
+                    </div>
+                </div>
+                
+                <div class="footer">
+                    <p>© 2025 Ярощук Павел Александрович, группа ИТ2203</p>
+                    <p>Все права защищены</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="paperclip-container">
+            <div class="paperclip">
+                <div class="hackerrank-info">
+                    <h3>Статистика Hackerrank</h3>
+                    <div class="hackerrank-stats">
+                        <strong>Python:</strong> 0 баллов
+                    </div>
+                    <div class="hackerrank-stats">
+                        <strong>SQL:</strong> 0 баллов
+                    </div>
+                    <div class="hackerrank-stats">
+                        <em>Обновлено: 03.10.2025</em>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="taskbar">
+        <div class="start-button">Пуск</div>
+    </div>
+</body>
+</html>
