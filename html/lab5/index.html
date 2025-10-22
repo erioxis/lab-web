@@ -3,76 +3,236 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Лабораторная 5: Абушкевич Юрий, ИТ2203</title>
-    <link rel="stylesheet" href="/styles.css">
+    <title>Лабораторная 5 - Ярощук Павел Александрович, группа ИТ2203</title>
+    <style>
+        body { 
+            font-family: 'Tahoma', 'Arial', sans-serif; 
+            margin: 0;
+            padding: 0;
+            background: #008080 url('back.png') center/cover no-repeat fixed;
+            color: #000;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .desktop {
+            padding: 20px;
+            height: calc(100vh - 40px);
+            position: relative;
+        }
+        .window {
+            background-color: #ece9d8;
+            border: 2px solid;
+            border-top-color: #fff;
+            border-left-color: #fff;
+            border-right-color: #808080;
+            border-bottom-color: #808080;
+            padding: 3px;
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            width: 700px;
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+        }
+        .title-bar {
+            background: linear-gradient(to right, #000080, #1084d0);
+            color: white;
+            padding: 3px 6px;
+            font-weight: bold;
+            font-size: 13px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .window-content {
+            padding: 15px;
+            background: #ece9d8;
+        }
+        h1 {
+            color: #000080;
+            text-align: center;
+            margin-top: 0;
+            font-size: 18px;
+        }
+        .student-info {
+            text-align: center;
+            margin-bottom: 20px;
+            padding: 8px;
+            background: #d4d0c8;
+            border: 1px solid #808080;
+        }
+        .tasks-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .task-item {
+            text-align: center;
+            cursor: pointer;
+            padding: 10px 5px;
+            border: 1px solid transparent;
+            background: #ece9d8;
+        }
+        .task-item:hover {
+            background-color: #316ac5;
+            color: white;
+            border: 1px dotted #316ac5;
+        }
+        .task-icon {
+            width: 32px;
+            height: 32px;
+            margin: 0 auto 5px;
+            background: url('file.png') center/contain no-repeat;
+        }
+        .task-title {
+            font-size: 11px;
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+        }
+        .task-item:hover .task-title {
+            color: white;
+        }
+        .button {
+            background: linear-gradient(to bottom, #d4d0c8, #ece9d8);
+            border: 2px solid;
+            border-top-color: #fff;
+            border-left-color: #fff;
+            border-right-color: #808080;
+            border-bottom-color: #808080;
+            padding: 3px 10px;
+            margin: 10px 0;
+            cursor: pointer;
+            font-family: 'Tahoma';
+            font-size: 11px;
+        }
+        .button:hover {
+            background: linear-gradient(to bottom, #eceae0, #f8f6f0);
+        }
+        .button:active {
+            border-top-color: #808080;
+            border-left-color: #808080;
+            border-right-color: #fff;
+            border-bottom-color: #fff;
+        }
+        .taskbar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to bottom, #245edb, #1d52c1);
+            height: 30px;
+            display: flex;
+            align-items: center;
+            padding: 0 5px;
+            border-top: 1px solid #fff;
+        }
+        .start-button {
+            background: linear-gradient(to bottom, #6ca035, #3d751b);
+            color: white;
+            padding: 4px 10px;
+            border: 1px solid;
+            border-top-color: #fff;
+            border-left-color: #fff;
+            border-right-color: #2d4f0f;
+            border-bottom-color: #2d4f0f;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        .description {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 12px;
+            color: #000;
+            line-height: 1.4;
+        }
+        .external-link {
+            text-align: center;
+            margin: 15px 0;
+        }
+        .external-link a {
+            color: #000080;
+            text-decoration: none;
+            font-size: 11px;
+            padding: 5px 10px;
+            background: linear-gradient(to bottom, #d4d0c8, #ece9d8);
+            border: 2px solid;
+            border-top-color: #fff;
+            border-left-color: #fff;
+            border-right-color: #808080;
+            border-bottom-color: #808080;
+        }
+        .external-link a:hover {
+            background: linear-gradient(to bottom, #eceae0, #f8f6f0);
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>Лабораторная работа 5</h1>
-            <p>Студент: Абушкевич Юрий | Группа: ИТ2203</p>
-        </header>
-
-        <nav>
-            <ul>
-                <li><a href="../index.html">Главная</a></li>
-                <li><a href="https://www.hackerrank.com/profile/yura_abushkevic1" target="_blank">Hackerrank</a></li>
-            </ul>
-        </nav>
-
-        <main>
-            <div class="card" style="margin-bottom: 10px;">
-                <h2 class="page-title">Задания лабораторной работы 5</h2>
-                <p>На этой странице представлены все задания 5 лабораторной работы. Для перехода к конкретному заданию нажмите на соответствующую ссылку.</p>
+    <div class="desktop">
+        <div class="window">
+            <div class="title-bar">
+                <span>Лабораторная работа 5</span>
+                <span style="font-family: 'Arial'; font-size: 16px;">_ □ X</span>
             </div>
-
-            <section id="tasks" class="tasks-section">
+            <div class="window-content">
+                <button class="button" onclick="location.href='/'">← Назад к списку лабораторных</button>
+                
+                <div class="student-info">
+                    <h2>Ярощук Павел Александрович</h2>
+                    <p>Группа: ИТ2203</p>
+                </div>
+                
+                <h1>Задания лабораторной работы 5</h1>
+                <p class="description">На этой странице представлены все задания 5 лабораторной работы. Для перехода к конкретному заданию нажмите на соответствующую иконку.</p>
+                
+                <div class="external-link">
+                    <a href="https://www.hackerrank.com/profile/yura_abushkevic1" target="_blank">HackerRank профиль</a>
+                </div>
+                
                 <div class="tasks-grid">
-                    <div class="task-card">
-                        <h3>Задание 1</h3>
-                        <a href="task1/index.html">Перейти к заданию</a>
+                    <div class="task-item" onclick="location.href='task1/index.html'">
+                        <div class="task-icon"></div>
+                        <div class="task-title">Задание 1<br>Подписка</div>
                     </div>
-                    <div class="task-card">
-                        <h3>Задание 2</h3>
-                        <a href="task2/index.html">Перейти к заданию</a>
+                    <div class="task-item" onclick="location.href='task2/index.html'">
+                        <div class="task-icon"></div>
+                        <div class="task-title">Задание 2<br>ToDo список</div>
                     </div>
-                    <div class="task-card">
-                        <h3>Задание 3</h3>
-                        <a href="task3/index.html">Перейти к заданию</a>
+                    <div class="task-item" onclick="location.href='task3/index.html'">
+                        <div class="task-icon"></div>
+                        <div class="task-title">Задание 3<br>Раскраска</div>
                     </div>
-                    <div class="task-card">
-                        <h3>Задание 4</h3>
-                        <a href="task4/index.html">Перейти к заданию</a>
+                    <div class="task-item" onclick="location.href='task4/index.html'">
+                        <div class="task-icon"></div>
+                        <div class="task-title">Задание 4<br>Контакты</div>
                     </div>
-                    <div class="task-card">
-                        <h3>Задание 5</h3>
-                        <a href="task5/index.html">Перейти к заданию</a>
+                    <div class="task-item" onclick="location.href='task5/index.html'">
+                        <div class="task-icon"></div>
+                        <div class="task-title">Задание 5<br>Калькулятор</div>
                     </div>
-                    <div class="task-card">
-                        <h3>Задание 6</h3>
-                        <a href="task6/index.html">Перейти к заданию</a>
+                    <div class="task-item" onclick="location.href='task6/index.html'">
+                        <div class="task-icon"></div>
+                        <div class="task-title">Задание 6<br>Генератор паролей</div>
                     </div>
-                    <div class="task-card">
-                        <h3>Задание 7</h3>
-                        <a href="task7/index.html">Перейти к заданию</a>
+                    <div class="task-item" onclick="location.href='task7/index.html'">
+                        <div class="task-icon"></div>
+                        <div class="task-title">Задание 7<br>Таблица умножения</div>
                     </div>
-                    <div class="task-card">
-                        <h3>Задание 8</h3>
-                        <a href="task8/index.html">Перейти к заданию</a>
+                    <div class="task-item" onclick="location.href='task8/index.html'">
+                        <div class="task-icon"></div>
+                        <div class="task-title">Задание 8<br>HTML-валидация</div>
                     </div>
-                    <div class="task-card">
-                        <h3>Задание 9</h3>
-                        <a href="task9/index.html">Перейти к заданию</a>
+                    <div class="task-item" onclick="location.href='task9/index.html'">
+                        <div class="task-icon"></div>
+                        <div class="task-title">Задание 9<br>JS-валидация</div>
                     </div>
                 </div>
-
-                <a href="../index.html" class="back-link">← Вернуться на главную страницу</a>
-            </section>
-        </main>
-
-        <footer>
-            <p>Абушкевич Юрий, ИТ2203</p>
-        </footer>
+            </div>
+        </div>
+    </div>
+    
+    <div class="taskbar">
+        <div class="start-button">Пуск</div>
     </div>
 </body>
 </html>
