@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Лабораторная 5 - Задание 1 - Ярощук Павел Александрович, группа ИТ2203</title>
+    <style>
+        body { 
+            font-family: 'Tahoma', 'Arial', sans-serif; 
+            margin: 0;
+            padding: 0;
+            background: #008080 url('back.png') center/cover no-repeat fixed;
+            color: #000;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .desktop {
+            padding: 20px;
+            height: calc(100vh - 40px);
+            position: relative;
+        }
+        .window {
+            background-color: #ece9d8;
+            border: 2px solid;
+            border-top-color: #fff;
+            border-left-color: #fff;
+            border-right-color: #808080;
+            border-bottom-color: #808080;
+            padding: 3px;
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            width: 500px;
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+        }
+        .title-bar {
+            background: linear-gradient(to right, #000080, #1084d0);
+            color: white;
+            padding: 3px 6px;
+            font-weight: bold;
+            font-size: 13px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .window-content {
+            padding: 15px;
+            background: #ece9d8;
+        }
+        h1 {
+            color: #000080;
+            text-align: center;
+            margin-top: 0;
+            font-size: 18px;
+        }
+        .student-info {
+            text-align: center;
+            margin-bottom: 20px;
+            padding: 8px;
+            background: #d4d0c8;
+            border: 1px solid #808080;
+        }
+        .nav-button {
+            background: linear-gradient(to bottom, #d4d0c8, #ece9d8);
+            border: 2px solid;
+            border-top-color: #fff;
+            border-left-color: #fff;
+            border-right-color: #808080;
+            border-bottom-color: #808080;
+            padding: 3px 10px;
+            margin: 10px 0;
+            cursor: pointer;
+            font-family: 'Tahoma';
+            font-size: 11px;
+        }
+        .nav-button:hover {
+            background: linear-gradient(to bottom, #eceae0, #f8f6f0);
+        }
+        .nav-button:active {
+            border-top-color: #808080;
+            border-left-color: #808080;
+            border-right-color: #fff;
+            border-bottom-color: #fff;
+        }
+        .result-display {
+            background: white;
+            border: 2px inset #ece9d8;
+            padding: 6px 8px;
+            font-family: 'Tahoma';
+            font-size: 12px;
+            min-height: 18px;
+            margin-top: 10px;
+            display: none;
+        }
+        .result-display.correct {
+            background: #f0fff0;
+            border-color: #008000;
+        }
+        .taskbar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to bottom, #245edb, #1d52c1);
+            height: 30px;
+            display: flex;
+            align-items: center;
+            padding: 0 5px;
+            border-top: 1px solid #fff;
+        }
+        .start-button {
+            background: linear-gradient(to bottom, #6ca035, #3d751b);
+            color: white;
+            padding: 4px 10px;
+            border: 1px solid;
+            border-top-color: #fff;
+            border-left-color: #fff;
+            border-right-color: #2d4f0f;
+            border-bottom-color: #2d4f0f;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        /* Модальное окно в стиле Windows XP */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-window {
+            background-color: #ece9d8;
+            border: 2px solid;
+            border-top-color: #fff;
+            border-left-color: #fff;
+            border-right-color: #808080;
+            border-bottom-color: #808080;
+            padding: 3px;
+            width: 400px;
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+        }
+        .modal-title-bar {
+            background: linear-gradient(to right, #000080, #1084d0);
+            color: white;
+            padding: 3px 6px;
+            font-weight: bold;
+            font-size: 13px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .modal-content {
+            padding: 15px;
+            background: #ece9d8;
+        }
+        .modal-input {
+            background: white;
+            border: 2px inset #ece9d8;
+            padding: 6px 8px;
+            font-family: 'Tahoma';
+            font-size: 12px;
+            width: calc(100% - 20px);
+            margin: 10px 0;
+        }
+        .modal-input.error {
+            border-color: red;
+        }
+        .error-message {
+            color: red;
+            min-height: 20px;
+            margin-top: 4px;
+            font-size: 11px;
+        }
+        .modal-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+            justify-content: flex-end;
+        }
+        .modal-button {
+            background: linear-gradient(to bottom, #d4d0c8, #ece9d8);
+            border: 2px solid;
+            border-top-color: #fff;
+            border-left-color: #fff;
+            border-right-color: #808080;
+            border-bottom-color: #808080;
+            padding: 4px 12px;
+            cursor: pointer;
+            font-family: 'Tahoma';
+            font-size: 11px;
+            min-width: 80px;
+        }
+        .modal-button:hover {
+            background: linear-gradient(to bottom, #eceae0, #f8f6f0);
+        }
+        .modal-button:active {
+            border-top-color: #808080;
+            border-left-color: #808080;
+            border-right-color: #fff;
+            border-bottom-color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="desktop">
+        <div class="window">
+            <div class="title-bar">
+                <span>Лабораторная работа 5 - Задание 1</span>
+                <span style="font-family: 'Arial'; font-size: 16px;">_ □ X</span>
+            </div>
+            <div class="window-content">
+                <button class="nav-button" onclick="location.href='../index.html'">← Назад к списку заданий</button>
+                
+                <h1>Подписка через 7 секунд</h1>
+                
+                <div class="student-info">
+                    <h2>Ярощук Павел Александрович</h2>
+                    <p>Группа: ИТ2203</p>
+                </div>
+                
+                <p style="text-align: center; margin-bottom: 20px; font-size: 12px;">
+                    Через 7 секунд появится модальное окно с формой подписки.
+                </p>
+                
+                <div id="result" class="result-display"></div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Модальное окно в стиле Windows XP -->
+    <div id="modal" class="modal">
+        <div class="modal-window">
+            <div class="modal-title-bar">
+                <span>Подписка на новости сайта</span>
+                <span style="font-family: 'Arial'; font-size: 16px;">_ □ X</span>
+            </div>
+            <div class="modal-content">
+                <h2 style="margin-top: 0; color: #000080; font-size: 14px;">Подпишитесь на новости сайта</h2>
+                <input type="email" id="email-input" class="modal-input" placeholder="Ваш e-mail">
+                <div id="email-error" class="error-message"></div>
+                <div class="modal-buttons">
+                    <button id="subscribe-btn" class="modal-button">Подписаться</button>
+                    <button id="close-btn" class="modal-button">Закрыть</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="taskbar">
+        <div class="start-button">Пуск</div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

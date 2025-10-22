@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Лабораторная 4 - Задание 7</title>
+    <style>
+        body { 
+            font-family: 'Tahoma', 'Arial', sans-serif; 
+            margin: 0;
+            padding: 0;
+            background: #008080 url('back.png') center/cover no-repeat fixed;
+            color: #000;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .window {
+            background-color: #ece9d8;
+            border: 2px solid;
+            border-top-color: #fff;
+            border-left-color: #fff;
+            border-right-color: #808080;
+            border-bottom-color: #808080;
+            padding: 3px;
+            width: 500px;
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+        }
+        .title-bar {
+            background: linear-gradient(to right, #000080, #1084d0);
+            color: white;
+            padding: 3px 6px;
+            font-weight: bold;
+            font-size: 13px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .window-content {
+            padding: 20px;
+            background: #ece9d8;
+        }
+        .input-group {
+            margin-bottom: 20px;
+        }
+        .password-input {
+            background: white;
+            border: 2px inset #ece9d8;
+            padding: 6px 8px;
+            font-family: 'Tahoma';
+            font-size: 12px;
+            width: 100%;
+            box-sizing: border-box;
+            letter-spacing: 1px;
+        }
+        .check-button {
+            background: linear-gradient(to bottom, #d4d0c8, #ece9d8);
+            border: 2px solid;
+            border-top-color: #fff;
+            border-left-color: #fff;
+            border-right-color: #808080;
+            border-bottom-color: #808080;
+            padding: 6px 15px;
+            cursor: pointer;
+            font-family: 'Tahoma';
+            font-size: 12px;
+            width: 100%;
+            margin-bottom: 15px;
+        }
+        .check-button:hover {
+            background: linear-gradient(to bottom, #eceae0, #f8f6f0);
+        }
+        .check-button:active {
+            border-top-color: #808080;
+            border-left-color: #808080;
+            border-right-color: #fff;
+            border-bottom-color: #fff;
+        }
+        .result-display {
+            background: white;
+            border: 2px inset #ece9d8;
+            padding: 10px;
+            font-family: 'Tahoma';
+            font-size: 12px;
+            min-height: 40px;
+            margin-bottom: 15px;
+        }
+        .score-display {
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            padding: 5px;
+            text-align: center;
+            background: #d4d0c8;
+        }
+        .criteria-list {
+            margin-top: 15px;
+        }
+        .criteria-item {
+            padding: 3px 0;
+            font-size: 11px;
+        }
+        .criteria-item.active {
+            color: #008000;
+            font-weight: bold;
+        }
+        .criteria-item.inactive {
+            color: #808080;
+        }
+        .examples {
+            margin-top: 20px;
+            border-top: 1px solid #808080;
+            padding-top: 15px;
+        }
+        .example-item {
+            padding: 5px 0;
+            border-bottom: 1px dotted #808080;
+            cursor: pointer;
+            font-size: 11px;
+        }
+        .example-item:hover {
+            background-color: #316ac5;
+            color: white;
+        }
+        .example-password {
+            font-family: 'Courier New', monospace;
+        }
+        .nav-button {
+            background: linear-gradient(to bottom, #d4d0c8, #ece9d8);
+            border: 2px solid;
+            border-top-color: #fff;
+            border-left-color: #fff;
+            border-right-color: #808080;
+            border-bottom-color: #808080;
+            padding: 3px 10px;
+            margin-top: 15px;
+            cursor: pointer;
+            font-family: 'Tahoma';
+            font-size: 11px;
+        }
+        .nav-button:hover {
+            background: linear-gradient(to bottom, #eceae0, #f8f6f0);
+        }
+        .nav-button:active {
+            border-top-color: #808080;
+            border-left-color: #808080;
+            border-right-color: #fff;
+            border-bottom-color: #fff;
+        }
+        .taskbar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to bottom, #245edb, #1d52c1);
+            height: 30px;
+            display: flex;
+            align-items: center;
+            padding: 0 5px;
+            border-top: 1px solid #fff;
+        }
+        .start-button {
+            background: linear-gradient(to bottom, #6ca035, #3d751b);
+            color: white;
+            padding: 4px 10px;
+            border: 1px solid;
+            border-top-color: #fff;
+            border-left-color: #fff;
+            border-right-color: #2d4f0f;
+            border-bottom-color: #2d4f0f;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        .score-0 { color: #ff0000; }
+        .score-1 { color: #ff4000; }
+        .score-2 { color: #ff8000; }
+        .score-3 { color: #ffbf00; }
+        .score-4 { color: #ffff00; }
+        .score-5 { color: #bfff00; }
+        .score-6 { color: #80ff00; }
+        .score-7 { color: #40ff00; }
+        .score-8 { color: #00ff00; }
+        .score-9 { color: #00ff40; }
+        .score-10 { color: #00ff80; }
+    </style>
+</head>
+<body>
+    <div class="window">
+        <div class="title-bar">
+            <span>Анализатор сложности пароля</span>
+            <span style="font-family: 'Arial'; font-size: 16px;">_ □ X</span>
+        </div>
+        <div class="window-content">
+            <div class="input-group">
+                <input type="text" id="passwordInput" class="password-input" 
+                       placeholder="Введите пароль для анализа"
+                       value="ShdJ129&yu">
+                <button id="checkButton" class="check-button">Анализировать сложность</button>
+            </div>
+            
+            <div class="result-display">
+                <div id="scoreDisplay" class="score-display">Введите пароль для анализа...</div>
+                <div id="criteriaList" class="criteria-list"></div>
+            </div>
+            
+            <div class="examples">
+                <div style="font-weight: bold; margin-bottom: 8px;">Примеры для проверки:</div>
+                <div class="example-item" onclick="document.getElementById('passwordInput').value = 'shdj'">
+                    <span class="example-password">shdj</span> - Критерии: 1 | Оценка: 0
+                </div>
+                <div class="example-item" onclick="document.getElementById('passwordInput').value = 'Sh1#'">
+                    <span class="example-password">Sh1#</span> - Критерии: 1 | Оценка: 0
+                </div>
+                <div class="example-item" onclick="document.getElementById('passwordInput').value = 'ShdJ'">
+                    <span class="example-password">ShdJ</span> - Критерии: 1 | Оценка: 0
+                </div>
+                <div class="example-item" onclick="document.getElementById('passwordInput').value = 'ShdJ*'">
+                    <span class="example-password">ShdJ*</span> - Критерии: 2, 5(1), 6 | Оценка: 3
+                </div>
+                <div class="example-item" onclick="document.getElementById('passwordInput').value = 'ShdJ129&yu'">
+                    <span class="example-password">ShdJ129&yu</span> - Критерии: 3, 5(2), 6 | Оценка: 5
+                </div>
+                <div class="example-item" onclick="document.getElementById('passwordInput').value = 'She*26^0p%?1('">
+                    <span class="example-password">She*26^0p%?1(</span> - Критерии: 4, 5(2), 6, 7 | Оценка: 8
+                </div>
+                <div class="example-item" onclick="document.getElementById('passwordInput').value = 'Sh*26^0p%?18('">
+                    <span class="example-password">Sh*26^0p%?18(</span> - Критерии: 4, 5(2), 6, 7, 8 | Оценка: 10
+                </div>
+            </div>
+            
+            <button class="nav-button" onclick="location.href='../index.html'">← Назад к списку заданий</button>
+        </div>
+    </div>
+    
+    <div class="taskbar">
+        <div class="start-button">Пуск</div>
+    </div>
+
+    <script>
+        'use strict';
+        
+        function analyzePassword(password) {
+            const criteria = {
+                1: { name: 'Длина менее 5 символов', score: 0, active: false },
+                2: { name: 'Длина 5-9 символов', score: 1, active: false },
+                3: { name: 'Длина 10-12 символов', score: 2, active: false },
+                4: { name: 'Длина свыше 12 символов', score: 3, active: false },
+                5: { name: 'Разные типы символов', score: 0, active: false, details: '' },
+                6: { name: 'Разные регистры букв', score: 0, active: false },
+                7: { name: 'Иные символы >30% длины', score: 0, active: false },
+                8: { name: 'Нет длинных буквенных/цифровых последовательностей', score: 0, active: false }
+            };
+            
+            let totalScore = 0;
+            const length = password.length;
+            
+            // Критерий 1: Длина менее 5 (отменяет остальные)
+            if (length < 5) {
+                criteria[1].active = true;
+                return { criteria, totalScore: 0 };
+            }
+            
+            // Критерии длины
+            if (length >= 5 && length <= 9) {
+                criteria[2].active = true;
+                totalScore += 1;
+            } else if (length >= 10 && length <= 12) {
+                criteria[3].active = true;
+                totalScore += 2;
+            } else if (length > 12) {
+                criteria[4].active = true;
+                totalScore += 3;
+            }
+            
+            // Критерий 5: Типы символов
+            const hasLowercase = /[a-z]/.test(password);
+            const hasUppercase = /[A-Z]/.test(password);
+            const hasDigits = /\d/.test(password);
+            const hasSpecial = /[~!#$%^&*()_\-+=?/,.[\]{}<>|\\]/.test(password);
+            
+            let symbolTypes = 0;
+            if (hasLowercase || hasUppercase) symbolTypes++;
+            if (hasDigits) symbolTypes++;
+            if (hasSpecial) symbolTypes++;
+            
+            if (symbolTypes > 1) {
+                criteria[5].active = true;
+                criteria[5].score = Math.min(symbolTypes - 1, 2);
+                criteria[5].details = `(${symbolTypes - 1})`;
+                totalScore += criteria[5].score;
+            }
+            
+            // Критерий 6: Регистры букв
+            if (hasLowercase && hasUppercase) {
+                criteria[6].active = true;
+                criteria[6].score = 1;
+                totalScore += 1;
+            }
+            
+            // Критерий 7: Иные символы более 30%
+            const specialChars = (password.match(/[~!#$%^&*()_\-+=?/,.[\]{}<>|\\]/g) || []).length;
+            const specialPercentage = (specialChars / length) * 100;
+            if (specialPercentage > 30) {
+                criteria[7].active = true;
+                criteria[7].score = 2;
+                totalScore += 2;
+            }
+            
+            // Критерий 8: Нет длинных буквенных/цифровых последовательностей
+            const hasLongLetterSequence = /[a-zA-Z]{3,}/.test(password);
+            const hasLongDigitSequence = /\d{3,}/.test(password);
+            if (!hasLongLetterSequence && !hasLongDigitSequence) {
+                criteria[8].active = true;
+                criteria[8].score = 2;
+                totalScore += 2;
+            }
+            
+            // Ограничиваем максимальный балл 10
+            totalScore = Math.min(totalScore, 10);
+            
+            return { criteria, totalScore };
+        }
+        
+        function displayResults(password, analysis) {
+            const scoreDisplay = document.getElementById('scoreDisplay');
+            const criteriaList = document.getElementById('criteriaList');
+            
+            // Отображаем общий балл
+            scoreDisplay.textContent = `Пароль: "${password}" | Общая оценка сложности: ${analysis.totalScore}/10`;
+            scoreDisplay.className = `score-display score-${analysis.totalScore}`;
+            
+            // Отображаем критерии
+            criteriaList.innerHTML = '';
+            
+            const activeCriteria = [];
+            Object.keys(analysis.criteria).forEach(key => {
+                const criterion = analysis.criteria[key];
+                const item = document.createElement('div');
+                item.className = `criteria-item ${criterion.active ? 'active' : 'inactive'}`;
+                
+                if (criterion.active) {
+                    let displayText = `${key}. ${criterion.name}`;
+                    if (criterion.details) {
+                        displayText += ` ${criterion.details}`;
+                    }
+                    displayText += ` +${criterion.score}`;
+                    item.textContent = displayText;
+                    activeCriteria.push(key);
+                } else {
+                    item.textContent = `${key}. ${criterion.name} +${criterion.score}`;
+                }
+                
+                criteriaList.appendChild(item);
+            });
+            
+            // Добавляем строку с перечислением активных критериев
+            if (activeCriteria.length > 0) {
+                const summary = document.createElement('div');
+                summary.className = 'criteria-item active';
+                summary.style.marginTop = '10px';
+                summary.style.fontWeight = 'bold';
+                summary.textContent = `Критерии: ${activeCriteria.join(', ')}`;
+                criteriaList.appendChild(summary);
+            }
+        }
+        
+        // Инициализация
+        document.addEventListener('DOMContentLoaded', () => {
+            const passwordInput = document.getElementById('passwordInput');
+            const checkButton = document.getElementById('checkButton');
+            
+            checkButton.addEventListener('click', () => {
+                const password = passwordInput.value;
+                const analysis = analyzePassword(password);
+                displayResults(password, analysis);
+            });
+            
+            // Автопроверка при нажатии Enter
+            passwordInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    checkButton.click();
+                }
+            });
+            
+            // Первоначальный анализ
+            checkButton.click();
+        });
+    </script>
+</body>
+</html>

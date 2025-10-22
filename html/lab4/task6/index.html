@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Лабораторная 4 - Задание 6</title>
+    <style>
+        body { 
+            font-family: 'Tahoma', 'Arial', sans-serif; 
+            margin: 0;
+            padding: 0;
+            background: #008080 url('back.png') center/cover no-repeat fixed;
+            color: #000;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .window {
+            background-color: #ece9d8;
+            border: 2px solid;
+            border-top-color: #fff;
+            border-left-color: #fff;
+            border-right-color: #808080;
+            border-bottom-color: #808080;
+            padding: 3px;
+            width: 500px;
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+        }
+        .title-bar {
+            background: linear-gradient(to right, #000080, #1084d0);
+            color: white;
+            padding: 3px 6px;
+            font-weight: bold;
+            font-size: 13px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .window-content {
+            padding: 20px;
+            background: #ece9d8;
+        }
+        .input-group {
+            margin-bottom: 20px;
+        }
+        .date-input {
+            background: white;
+            border: 2px inset #ece9d8;
+            padding: 6px 8px;
+            font-family: 'Tahoma';
+            font-size: 12px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .check-button {
+            background: linear-gradient(to bottom, #d4d0c8, #ece9d8);
+            border: 2px solid;
+            border-top-color: #fff;
+            border-left-color: #fff;
+            border-right-color: #808080;
+            border-bottom-color: #808080;
+            padding: 6px 15px;
+            cursor: pointer;
+            font-family: 'Tahoma';
+            font-size: 12px;
+            width: 100%;
+            margin-bottom: 15px;
+        }
+        .check-button:hover {
+            background: linear-gradient(to bottom, #eceae0, #f8f6f0);
+        }
+        .check-button:active {
+            border-top-color: #808080;
+            border-left-color: #808080;
+            border-right-color: #fff;
+            border-bottom-color: #fff;
+        }
+        .result-display {
+            background: white;
+            border: 2px inset #ece9d8;
+            padding: 10px;
+            font-family: 'Tahoma';
+            font-size: 12px;
+            min-height: 40px;
+            margin-bottom: 15px;
+        }
+        .examples {
+            margin-top: 20px;
+            border-top: 1px solid #808080;
+            padding-top: 15px;
+        }
+        .example-item {
+            padding: 5px 0;
+            border-bottom: 1px dotted #808080;
+            cursor: pointer;
+            font-size: 11px;
+        }
+        .example-item:hover {
+            background-color: #316ac5;
+            color: white;
+        }
+        .example-format {
+            font-family: 'Courier New', monospace;
+        }
+        .nav-button {
+            background: linear-gradient(to bottom, #d4d0c8, #ece9d8);
+            border: 2px solid;
+            border-top-color: #fff;
+            border-left-color: #fff;
+            border-right-color: #808080;
+            border-bottom-color: #808080;
+            padding: 3px 10px;
+            margin-top: 15px;
+            cursor: pointer;
+            font-family: 'Tahoma';
+            font-size: 11px;
+        }
+        .nav-button:hover {
+            background: linear-gradient(to bottom, #eceae0, #f8f6f0);
+        }
+        .nav-button:active {
+            border-top-color: #808080;
+            border-left-color: #808080;
+            border-right-color: #fff;
+            border-bottom-color: #fff;
+        }
+        .taskbar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to bottom, #245edb, #1d52c1);
+            height: 30px;
+            display: flex;
+            align-items: center;
+            padding: 0 5px;
+            border-top: 1px solid #fff;
+        }
+        .start-button {
+            background: linear-gradient(to bottom, #6ca035, #3d751b);
+            color: white;
+            padding: 4px 10px;
+            border: 1px solid;
+            border-top-color: #fff;
+            border-left-color: #fff;
+            border-right-color: #2d4f0f;
+            border-bottom-color: #2d4f0f;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        .correct {
+            color: #008000;
+            font-weight: bold;
+        }
+        .incorrect {
+            color: #ff0000;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="window">
+        <div class="title-bar">
+            <span>Проверка формата даты и времени</span>
+            <span style="font-family: 'Arial'; font-size: 16px;">_ □ X</span>
+        </div>
+        <div class="window-content">
+            <div class="input-group">
+                <input type="text" id="dateInput" class="date-input" 
+                       placeholder="Введите дату и время в формате дд-мм-гггг чч:мм:сс" 
+                       value="11-03-2019 10:15:01">
+                <button id="checkButton" class="check-button">Проверить</button>
+            </div>
+            
+            <div class="result-display" id="result">
+                Введите дату для проверки...
+            </div>
+            
+            <div class="examples">
+                <div style="font-weight: bold; margin-bottom: 8px;">Примеры для проверки:</div>
+                <div class="example-item" onclick="document.getElementById('dateInput').value = '11-03-2019 10:15:01'">
+                    <span class="example-format">11-03-2019 10:15:01</span> - Формат корректен, данные корректны
+                </div>
+                <div class="example-item" onclick="document.getElementById('dateInput').value = '11032019 10:15:01'">
+                    <span class="example-format">11032019 10:15:01</span> - Формат некорректен, данные не проверяются
+                </div>
+                <div class="example-item" onclick="document.getElementById('dateInput').value = '11-03-2019 1015:01'">
+                    <span class="example-format">11-03-2019 1015:01</span> - Формат некорректен, данные не проверяются
+                </div>
+                <div class="example-item" onclick="document.getElementById('dateInput').value = '29-02-2019 10:15:01'">
+                    <span class="example-format">29-02-2019 10:15:01</span> - Формат корректен, данные некорректны
+                </div>
+                <div class="example-item" onclick="document.getElementById('dateInput').value = '28-02-2019 10:99:01'">
+                    <span class="example-format">28-02-2019 10:99:01</span> - Формат корректен, данные некорректны
+                </div>
+            </div>
+            
+            <button class="nav-button" onclick="location.href='../index.html'">← Назад к списку заданий</button>
+        </div>
+    </div>
+    
+    <div class="taskbar">
+        <div class="start-button">Пуск</div>
+    </div>
+
+    <script>
+        'use strict';
+        
+        function validateDateTime(input) {
+            // Проверка формата с помощью регулярного выражения
+            const formatRegex = /^(\d{2})-(\d{2})-(\d{4}) (\d{2}):(\d{2}):(\d{2})$/;
+            const match = input.match(formatRegex);
+            
+            if (!match) {
+                return {
+                    formatValid: false,
+                    dataValid: false,
+                    message: 'Формат некорректен, данные не проверяются'
+                };
+            }
+            
+            // Извлечение компонентов даты и времени
+            const day = parseInt(match[1]);
+            const month = parseInt(match[2]);
+            const year = parseInt(match[3]);
+            const hours = parseInt(match[4]);
+            const minutes = parseInt(match[5]);
+            const seconds = parseInt(match[6]);
+            
+            // Проверка корректности данных
+            let dataValid = true;
+            let errorMessages = [];
+            
+            // Проверка месяца
+            if (month < 1 || month > 12) {
+                dataValid = false;
+                errorMessages.push('месяц должен быть от 1 до 12');
+            }
+            
+            // Проверка дня
+            if (day < 1 || day > 31) {
+                dataValid = false;
+                errorMessages.push('день должен быть от 1 до 31');
+            } else {
+                // Проверка дней в месяце
+                const daysInMonth = new Date(year, month, 0).getDate();
+                if (day > daysInMonth) {
+                    dataValid = false;
+                    errorMessages.push(`в ${month}-м месяце ${year} года только ${daysInMonth} дней`);
+                }
+            }
+            
+            // Проверка года (разумные пределы)
+            if (year < 1900 || year > 2100) {
+                dataValid = false;
+                errorMessages.push('год должен быть между 1900 и 2100');
+            }
+            
+            // Проверка часов
+            if (hours < 0 || hours > 23) {
+                dataValid = false;
+                errorMessages.push('часы должны быть от 0 до 23');
+            }
+            
+            // Проверка минут
+            if (minutes < 0 || minutes > 59) {
+                dataValid = false;
+                errorMessages.push('минуты должны быть от 0 до 59');
+            }
+            
+            // Проверка секунд
+            if (seconds < 0 || seconds > 59) {
+                dataValid = false;
+                errorMessages.push('секунды должны быть от 0 до 59');
+            }
+            
+            if (dataValid) {
+                return {
+                    formatValid: true,
+                    dataValid: true,
+                    message: 'Формат корректен, данные корректны'
+                };
+            } else {
+                return {
+                    formatValid: true,
+                    dataValid: false,
+                    message: `Формат корректен, данные некорректны (${errorMessages.join(', ')})`
+                };
+            }
+        }
+        
+        // Инициализация
+        document.addEventListener('DOMContentLoaded', () => {
+            const dateInput = document.getElementById('dateInput');
+            const checkButton = document.getElementById('checkButton');
+            const resultDisplay = document.getElementById('result');
+            
+            checkButton.addEventListener('click', () => {
+                const input = dateInput.value.trim();
+                const validation = validateDateTime(input);
+                
+                if (validation.formatValid && validation.dataValid) {
+                    resultDisplay.innerHTML = `<span class="correct">${validation.message}</span>`;
+                } else if (validation.formatValid && !validation.dataValid) {
+                    resultDisplay.innerHTML = `<span class="incorrect">${validation.message}</span>`;
+                } else {
+                    resultDisplay.innerHTML = `<span class="incorrect">${validation.message}</span>`;
+                }
+            });
+            
+            // Автопроверка при нажатии Enter
+            dateInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    checkButton.click();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

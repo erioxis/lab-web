@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Лабораторная 5 - Задание 4 - Ярощук Павел Александрович, группа ИТ2203</title>
+    <style>
+        body { 
+            font-family: 'Tahoma', 'Arial', sans-serif; 
+            margin: 0;
+            padding: 0;
+            background: #008080 url('back.png') center/cover no-repeat fixed;
+            color: #000;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .desktop {
+            padding: 20px;
+            height: calc(100vh - 40px);
+            position: relative;
+        }
+        .window {
+            background-color: #ece9d8;
+            border: 2px solid;
+            border-top-color: #fff;
+            border-left-color: #fff;
+            border-right-color: #808080;
+            border-bottom-color: #808080;
+            padding: 3px;
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            width: 700px;
+            height: 600px;
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+        }
+        .title-bar {
+            background: linear-gradient(to right, #000080, #1084d0);
+            color: white;
+            padding: 3px 6px;
+            font-weight: bold;
+            font-size: 13px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .window-content {
+            padding: 15px;
+            background: #ece9d8;
+            height: calc(100% - 60px);
+            overflow-y: auto;
+        }
+        h1 {
+            color: #000080;
+            text-align: center;
+            margin-top: 0;
+            font-size: 18px;
+        }
+        .student-info {
+            text-align: center;
+            margin-bottom: 20px;
+            padding: 8px;
+            background: #d4d0c8;
+            border: 1px solid #808080;
+        }
+        .nav-button {
+            background: linear-gradient(to bottom, #d4d0c8, #ece9d8);
+            border: 2px solid;
+            border-top-color: #fff;
+            border-left-color: #fff;
+            border-right-color: #808080;
+            border-bottom-color: #808080;
+            padding: 3px 10px;
+            margin: 10px 0;
+            cursor: pointer;
+            font-family: 'Tahoma';
+            font-size: 11px;
+        }
+        .nav-button:hover {
+            background: linear-gradient(to bottom, #eceae0, #f8f6f0);
+        }
+        .nav-button:active {
+            border-top-color: #808080;
+            border-left-color: #808080;
+            border-right-color: #fff;
+            border-bottom-color: #fff;
+        }
+        
+        /* Стили для формы контактов */
+        .form-section {
+            background: #d4d0c8;
+            border: 2px inset #ece9d8;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .section-title {
+            color: #000080;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .contact-form {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin: 15px 0;
+        }
+        .contact-input {
+            background: white;
+            border: 2px inset #ece9d8;
+            padding: 6px 8px;
+            font-family: 'Tahoma';
+            font-size: 11px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .contact-input:focus {
+            outline: 1px solid #000080;
+        }
+        .form-button {
+            background: linear-gradient(to bottom, #d4d0c8, #ece9d8);
+            border: 2px solid;
+            border-top-color: #fff;
+            border-left-color: #fff;
+            border-right-color: #808080;
+            border-bottom-color: #808080;
+            padding: 5px 12px;
+            cursor: pointer;
+            font-family: 'Tahoma';
+            font-size: 11px;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        .form-button:hover {
+            background: linear-gradient(to bottom, #eceae0, #f8f6f0);
+        }
+        .form-button:active {
+            border-top-color: #808080;
+            border-left-color: #808080;
+            border-right-color: #fff;
+            border-bottom-color: #fff;
+        }
+        .filter-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin: 15px 0;
+        }
+        .contacts-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            border: 2px inset #ece9d8;
+            background: white;
+        }
+        .contacts-table th,
+        .contacts-table td {
+            padding: 8px 10px;
+            border: 1px solid #808080;
+            text-align: left;
+            font-size: 11px;
+        }
+        .contacts-table th {
+            background: linear-gradient(to bottom, #d4d0c8, #ece9d8);
+            font-weight: bold;
+            color: #000;
+        }
+        .contacts-table tr:nth-child(even) {
+            background: #f8f8f8;
+        }
+        .contacts-table tr:hover {
+            background: #e6f3ff;
+        }
+        .buttons-container {
+            margin: 10px 0;
+            text-align: center;
+        }
+        .taskbar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to bottom, #245edb, #1d52c1);
+            height: 30px;
+            display: flex;
+            align-items: center;
+            padding: 0 5px;
+            border-top: 1px solid #fff;
+        }
+        .start-button {
+            background: linear-gradient(to bottom, #6ca035, #3d751b);
+            color: white;
+            padding: 4px 10px;
+            border: 1px solid;
+            border-top-color: #fff;
+            border-left-color: #fff;
+            border-right-color: #2d4f0f;
+            border-bottom-color: #2d4f0f;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        .empty-table {
+            text-align: center;
+            color: #666;
+            font-style: italic;
+            padding: 20px;
+            font-size: 11px;
+        }
+    </style>
+</head>
+<body>
+    <div class="desktop">
+        <div class="window">
+            <div class="title-bar">
+                <span>Лабораторная работа 5 - Задание 4</span>
+                <span style="font-family: 'Arial'; font-size: 16px;">_ □ X</span>
+            </div>
+            <div class="window-content">
+                <button class="nav-button" onclick="location.href='../index.html'">← Назад к списку заданий</button>
+                
+                <h1>Контакты с фильтром</h1>
+                
+                <div class="student-info">
+                    <h2>Ярощук Павел Александрович</h2>
+                    <p>Группа: ИТ2203</p>
+                </div>
+                
+                <!-- Форма добавления контакта -->
+                <div class="form-section">
+                    <div class="section-title">Добавить новый контакт</div>
+                    <div class="contact-form">
+                        <input type="text" id="surname" placeholder="Фамилия" class="contact-input">
+                        <input type="text" id="name" placeholder="Имя" class="contact-input">
+                        <input type="number" id="age" placeholder="Возраст" class="contact-input">
+                        <input type="tel" id="phone" placeholder="Телефон" class="contact-input">
+                    </div>
+                    <div class="buttons-container">
+                        <button id="add-contact" class="form-button">Добавить контакт</button>
+                    </div>
+                </div>
+
+                <!-- Форма фильтрации -->
+                <div class="form-section">
+                    <div class="section-title">Фильтр контактов</div>
+                    <div class="filter-row">
+                        <input type="text" id="filter-surname" placeholder="Фамилия" class="contact-input">
+                        <input type="text" id="filter-name" placeholder="Имя" class="contact-input">
+                        <input type="text" id="filter-age" placeholder="Возраст" class="contact-input">
+                        <input type="text" id="filter-phone" placeholder="Телефон" class="contact-input">
+                    </div>
+                    <div class="buttons-container">
+                        <button id="apply-filter" class="form-button">Применить фильтр</button>
+                    </div>
+                </div>
+
+                <!-- Таблица контактов -->
+                <table class="contacts-table">
+                    <thead>
+                        <tr>
+                            <th>Фамилия</th>
+                            <th>Имя</th>
+                            <th>Возраст</th>
+                            <th>Телефон</th>
+                        </tr>
+                    </thead>
+                    <tbody id="contacts-body">
+                        <tr>
+                            <td colspan="4" class="empty-table">Нет контактов для отображения</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+    <div class="taskbar">
+        <div class="start-button">Пуск</div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Лабораторная 5 - Задание 6 - Ярощук Павел Александрович, группа ИТ2203</title>
+    <style>
+        body { 
+            font-family: 'Tahoma', 'Arial', sans-serif; 
+            margin: 0;
+            padding: 0;
+            background: #008080 url('back.png') center/cover no-repeat fixed;
+            color: #000;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .desktop {
+            padding: 20px;
+            height: calc(100vh - 40px);
+            position: relative;
+        }
+        .window {
+            background-color: #ece9d8;
+            border: 2px solid;
+            border-top-color: #fff;
+            border-left-color: #fff;
+            border-right-color: #808080;
+            border-bottom-color: #808080;
+            padding: 3px;
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            width: 500px;
+            height: 450px;
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+        }
+        .title-bar {
+            background: linear-gradient(to right, #000080, #1084d0);
+            color: white;
+            padding: 3px 6px;
+            font-weight: bold;
+            font-size: 13px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .window-content {
+            padding: 15px;
+            background: #ece9d8;
+            height: calc(100% - 60px);
+            overflow-y: auto;
+        }
+        h1 {
+            color: #000080;
+            text-align: center;
+            margin-top: 0;
+            font-size: 18px;
+        }
+        .student-info {
+            text-align: center;
+            margin-bottom: 20px;
+            padding: 8px;
+            background: #d4d0c8;
+            border: 1px solid #808080;
+        }
+        .nav-button {
+            background: linear-gradient(to bottom, #d4d0c8, #ece9d8);
+            border: 2px solid;
+            border-top-color: #fff;
+            border-left-color: #fff;
+            border-right-color: #808080;
+            border-bottom-color: #808080;
+            padding: 3px 10px;
+            margin: 10px 0;
+            cursor: pointer;
+            font-family: 'Tahoma';
+            font-size: 11px;
+        }
+        .nav-button:hover {
+            background: linear-gradient(to bottom, #eceae0, #f8f6f0);
+        }
+        .nav-button:active {
+            border-top-color: #808080;
+            border-left-color: #808080;
+            border-right-color: #fff;
+            border-bottom-color: #fff;
+        }
+        
+        /* Стили для генератора паролей */
+        .options-section {
+            background: #d4d0c8;
+            border: 2px inset #ece9d8;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .section-title {
+            color: #000080;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+        .options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 15px 0;
+            align-items: center;
+        }
+        .length-control {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .length-input {
+            background: white;
+            border: 2px inset #ece9d8;
+            padding: 4px 6px;
+            font-family: 'Tahoma';
+            font-size: 11px;
+            width: 60px;
+        }
+        .option-group {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .option-group input[type="checkbox"] {
+            width: 13px;
+            height: 13px;
+        }
+        .option-group label {
+            font-size: 11px;
+            cursor: pointer;
+        }
+        .generate-button {
+            background: linear-gradient(to bottom, #d4d0c8, #ece9d8);
+            border: 2px solid;
+            border-top-color: #fff;
+            border-left-color: #fff;
+            border-right-color: #808080;
+            border-bottom-color: #808080;
+            padding: 6px 16px;
+            cursor: pointer;
+            font-family: 'Tahoma';
+            font-size: 12px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        .generate-button:hover {
+            background: linear-gradient(to bottom, #eceae0, #f8f6f0);
+        }
+        .generate-button:active {
+            border-top-color: #808080;
+            border-left-color: #808080;
+            border-right-color: #fff;
+            border-bottom-color: #fff;
+        }
+        .password-output {
+            margin: 15px 0;
+            padding: 12px;
+            background: white;
+            border: 2px inset #ece9d8;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            word-break: break-all;
+            min-height: 20px;
+            display: none;
+        }
+        .copy-button {
+            background: linear-gradient(to bottom, #008000, #006400);
+            color: white;
+            border: 2px solid;
+            border-top-color: #fff;
+            border-left-color: #fff;
+            border-right-color: #2d4f0f;
+            border-bottom-color: #2d4f0f;
+            padding: 4px 12px;
+            cursor: pointer;
+            font-family: 'Tahoma';
+            font-size: 11px;
+            margin-top: 8px;
+            display: none;
+        }
+        .copy-button:hover {
+            background: linear-gradient(to bottom, #009900, #007700);
+        }
+        .copy-button:active {
+            border-top-color: #2d4f0f;
+            border-left-color: #2d4f0f;
+            border-right-color: #fff;
+            border-bottom-color: #fff;
+        }
+        .copy-button:disabled {
+            background: linear-gradient(to bottom, #cccccc, #aaaaaa);
+            color: #666666;
+            border-color: #cccccc #999999 #999999 #cccccc;
+            cursor: not-allowed;
+        }
+        .taskbar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to bottom, #245edb, #1d52c1);
+            height: 30px;
+            display: flex;
+            align-items: center;
+            padding: 0 5px;
+            border-top: 1px solid #fff;
+        }
+        .start-button {
+            background: linear-gradient(to bottom, #6ca035, #3d751b);
+            color: white;
+            padding: 4px 10px;
+            border: 1px solid;
+            border-top-color: #fff;
+            border-left-color: #fff;
+            border-right-color: #2d4f0f;
+            border-bottom-color: #2d4f0f;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        .instructions {
+            font-size: 10px;
+            color: #666;
+            text-align: center;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="desktop">
+        <div class="window">
+            <div class="title-bar">
+                <span>Лабораторная работа 5 - Задание 6</span>
+                <span style="font-family: 'Arial'; font-size: 16px;">_ □ X</span>
+            </div>
+            <div class="window-content">
+                <button class="nav-button" onclick="location.href='../index.html'">← Назад к списку заданий</button>
+                
+                <h1>Генератор паролей</h1>
+                
+                <div class="student-info">
+                    <h2>Ярощук Павел Александрович</h2>
+                    <p>Группа: ИТ2203</p>
+                </div>
+                
+                <div class="options-section">
+                    <div class="section-title">Настройки пароля</div>
+                    
+                    <div class="options">
+                        <div class="length-control">
+                            <label for="length" style="font-size: 11px;">Длина:</label>
+                            <input type="number" id="length" min="6" max="32" value="12" class="length-input">
+                        </div>
+                        
+                        <div class="option-group">
+                            <input type="checkbox" id="digits" checked>
+                            <label for="digits">Цифры (0-9)</label>
+                        </div>
+                        
+                        <div class="option-group">
+                            <input type="checkbox" id="lower" checked>
+                            <label for="lower">Прописные (a-z)</label>
+                        </div>
+                        
+                        <div class="option-group">
+                            <input type="checkbox" id="upper" checked>
+                            <label for="upper">Заглавные (A-Z)</label>
+                        </div>
+                        
+                        <div class="option-group">
+                            <input type="checkbox" id="symbols">
+                            <label for="symbols">Символы (!@#)</label>
+                        </div>
+                    </div>
+                    
+                    <button id="generate" class="generate-button">Сгенерировать пароль</button>
+                    <div class="instructions">Выберите хотя бы один тип символов</div>
+                </div>
+                
+                <div id="password-output" class="password-output"></div>
+                <button id="copy-btn" class="copy-button" disabled>Копировать в буфер</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="taskbar">
+        <div class="start-button">Пуск</div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

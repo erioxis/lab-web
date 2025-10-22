@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Лабораторная 5 - Задание 5 - Ярощук Павел Александрович, группа ИТ2203</title>
+    <style>
+        body { 
+            font-family: 'Tahoma', 'Arial', sans-serif; 
+            margin: 0;
+            padding: 0;
+            background: #008080 url('back.png') center/cover no-repeat fixed;
+            color: #000;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .desktop {
+            padding: 20px;
+            height: calc(100vh - 40px);
+            position: relative;
+        }
+        .window {
+            background-color: #ece9d8;
+            border: 2px solid;
+            border-top-color: #fff;
+            border-left-color: #fff;
+            border-right-color: #808080;
+            border-bottom-color: #808080;
+            padding: 3px;
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            width: 500px;
+            height: 600px;
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+        }
+        .title-bar {
+            background: linear-gradient(to right, #000080, #1084d0);
+            color: white;
+            padding: 3px 6px;
+            font-weight: bold;
+            font-size: 13px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .window-content {
+            padding: 15px;
+            background: #ece9d8;
+            height: calc(100% - 60px);
+            overflow-y: auto;
+        }
+        h1 {
+            color: #000080;
+            text-align: center;
+            margin-top: 0;
+            font-size: 18px;
+        }
+        .student-info {
+            text-align: center;
+            margin-bottom: 20px;
+            padding: 8px;
+            background: #d4d0c8;
+            border: 1px solid #808080;
+        }
+        .nav-button {
+            background: linear-gradient(to bottom, #d4d0c8, #ece9d8);
+            border: 2px solid;
+            border-top-color: #fff;
+            border-left-color: #fff;
+            border-right-color: #808080;
+            border-bottom-color: #808080;
+            padding: 3px 10px;
+            margin: 10px 0;
+            cursor: pointer;
+            font-family: 'Tahoma';
+            font-size: 11px;
+        }
+        .nav-button:hover {
+            background: linear-gradient(to bottom, #eceae0, #f8f6f0);
+        }
+        .nav-button:active {
+            border-top-color: #808080;
+            border-left-color: #808080;
+            border-right-color: #fff;
+            border-bottom-color: #fff;
+        }
+        
+        /* Стили для калькулятора */
+        .calc-container {
+            background: #d4d0c8;
+            border: 2px inset #ece9d8;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .calc-display {
+            width: calc(100% - 20px);
+            padding: 10px;
+            font-size: 18px;
+            text-align: right;
+            border: 2px inset #ece9d8;
+            background: white;
+            margin-bottom: 12px;
+            font-family: 'Tahoma';
+            font-weight: bold;
+            overflow: hidden;
+            word-break: break-all;
+            min-height: 25px;
+        }
+        .log-base-row {
+            display: none;
+            margin-bottom: 12px;
+            gap: 8px;
+            align-items: center;
+            padding: 8px;
+            background: #ece9d8;
+            border: 1px solid #808080;
+        }
+        .log-base-row input {
+            background: white;
+            border: 2px inset #ece9d8;
+            padding: 4px 6px;
+            font-family: 'Tahoma';
+            font-size: 11px;
+            width: 80px;
+        }
+        .log-base-buttons {
+            display: flex;
+            gap: 5px;
+        }
+        .log-btn {
+            background: linear-gradient(to bottom, #d4d0c8, #ece9d8);
+            border: 2px solid;
+            border-top-color: #fff;
+            border-left-color: #fff;
+            border-right-color: #808080;
+            border-bottom-color: #808080;
+            padding: 3px 8px;
+            cursor: pointer;
+            font-family: 'Tahoma';
+            font-size: 10px;
+            min-width: 50px;
+        }
+        .log-btn:hover {
+            background: linear-gradient(to bottom, #eceae0, #f8f6f0);
+        }
+        .log-btn:active {
+            border-top-color: #808080;
+            border-left-color: #808080;
+            border-right-color: #fff;
+            border-bottom-color: #fff;
+        }
+        .calc-buttons {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 6px;
+        }
+        .calc-btn {
+            background: linear-gradient(to bottom, #d4d0c8, #ece9d8);
+            border: 2px solid;
+            border-top-color: #fff;
+            border-left-color: #fff;
+            border-right-color: #808080;
+            border-bottom-color: #808080;
+            padding: 8px 4px;
+            font-size: 12px;
+            cursor: pointer;
+            font-family: 'Tahoma';
+            font-weight: bold;
+            min-height: 30px;
+        }
+        .calc-btn:hover {
+            background: linear-gradient(to bottom, #eceae0, #f8f6f0);
+        }
+        .calc-btn:active {
+            border-top-color: #808080;
+            border-left-color: #808080;
+            border-right-color: #fff;
+            border-bottom-color: #fff;
+        }
+        .calc-btn.operator {
+            background: linear-gradient(to bottom, #f0f0f0, #e0e0e0);
+        }
+        .calc-btn.function {
+            background: linear-gradient(to bottom, #e6f3ff, #cce6ff);
+            color: #000080;
+        }
+        .calc-btn.equals {
+            background: linear-gradient(to bottom, #008000, #006400);
+            color: white;
+            border-color: #fff #2d4f0f #2d4f0f #fff;
+        }
+        .calc-btn.clear {
+            background: linear-gradient(to bottom, #ffcccc, #ff9999);
+            color: #800000;
+        }
+
+        /* История операций */
+        .history-section {
+            margin-top: 20px;
+            border: 2px inset #ece9d8;
+            padding: 12px;
+            background: #ece9d8;
+        }
+        .history-title {
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #000080;
+            font-size: 12px;
+        }
+        .history-list {
+            max-height: 120px;
+            overflow-y: auto;
+            padding: 8px;
+            background: white;
+            border: 1px inset #ece9d8;
+            font-family: 'Tahoma';
+            font-size: 11px;
+        }
+        .history-item {
+            padding: 3px 0;
+            border-bottom: 1px dotted #ccc;
+        }
+        .history-item:last-child {
+            border-bottom: none;
+        }
+        .history-item .result {
+            color: #000080;
+            font-weight: bold;
+        }
+        .taskbar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to bottom, #245edb, #1d52c1);
+            height: 30px;
+            display: flex;
+            align-items: center;
+            padding: 0 5px;
+            border-top: 1px solid #fff;
+        }
+        .start-button {
+            background: linear-gradient(to bottom, #6ca035, #3d751b);
+            color: white;
+            padding: 4px 10px;
+            border: 1px solid;
+            border-top-color: #fff;
+            border-left-color: #fff;
+            border-right-color: #2d4f0f;
+            border-bottom-color: #2d4f0f;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        .empty-history {
+            color: #666;
+            font-style: italic;
+            text-align: center;
+            padding: 10px;
+            font-size: 11px;
+        }
+    </style>
+</head>
+<body>
+    <div class="desktop">
+        <div class="window">
+            <div class="title-bar">
+                <span>Лабораторная работа 5 - Задание 5</span>
+                <span style="font-family: 'Arial'; font-size: 16px;">_ □ X</span>
+            </div>
+            <div class="window-content">
+                <button class="nav-button" onclick="location.href='../index.html'">← Назад к списку заданий</button>
+                
+                <h1>Калькулятор с кнопками</h1>
+                
+                <div class="student-info">
+                    <h2>Ярощук Павел Александрович</h2>
+                    <p>Группа: ИТ2203</p>
+                </div>
+                
+                <div class="calc-container">
+                    <div class="calc-display" id="display">0</div>
+
+                    <div class="log-base-row" id="logBaseRow">
+                        <label for="logBase" style="font-size: 11px;">Основание log:</label>
+                        <input type="text" id="logBase" placeholder="x>0, x≠1">
+                        <div class="log-base-buttons">
+                            <button id="logConfirm" class="log-btn">OK</button>
+                            <button id="logCancel" class="log-btn">Отмена</button>
+                        </div>
+                    </div>
+
+                    <div class="calc-buttons" id="calc-buttons">
+                        <button class="calc-btn clear" data-action="clear">C</button>
+                        <button class="calc-btn" data-action="back">⌫</button>
+                        <button class="calc-btn function" data-func="sqrt">√</button>
+                        <button class="calc-btn function" data-func="log">log</button>
+                        <button class="calc-btn operator" data-op="/">/</button>
+
+                        <button class="calc-btn" data-digit="7">7</button>
+                        <button class="calc-btn" data-digit="8">8</button>
+                        <button class="calc-btn" data-digit="9">9</button>
+                        <button class="calc-btn operator" data-op="*">×</button>
+                        <button class="calc-btn operator" data-op="-">−</button>
+
+                        <button class="calc-btn" data-digit="4">4</button>
+                        <button class="calc-btn" data-digit="5">5</button>
+                        <button class="calc-btn" data-digit="6">6</button>
+                        <button class="calc-btn operator" data-op="+">+</button>
+                        <button class="calc-btn" data-digit="0">0</button>
+
+                        <button class="calc-btn" data-digit="1">1</button>
+                        <button class="calc-btn" data-digit="2">2</button>
+                        <button class="calc-btn" data-digit="3">3</button>
+                        <button class="calc-btn" data-action="decimal">.</button>
+                        <button class="calc-btn equals" data-action="equals">=</button>
+                    </div>
+                </div>
+
+                <div class="history-section">
+                    <div class="history-title">История операций</div>
+                    <div class="history-list" id="historyList">
+                        <div class="empty-history">История операций пуста</div>
+                    </div>
+                    <button id="clearHistory" class="nav-button" style="margin-top: 8px; font-size: 10px; padding: 2px 8px;">
+                        Очистить историю
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="taskbar">
+        <div class="start-button">Пуск</div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Лабораторная 3 - Ярощук Павел Александрович, группа ИТ2203</title>
+    <style>
+        body { 
+            font-family: 'Tahoma', 'Arial', sans-serif; 
+            margin: 0;
+            padding: 0;
+            background: #008080 url('back.png') center/cover no-repeat fixed;
+            color: #000;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .desktop {
+            padding: 20px;
+            height: calc(100vh - 40px);
+            position: relative;
+        }
+        .window {
+            background-color: #ece9d8;
+            border: 2px solid;
+            border-top-color: #fff;
+            border-left-color: #fff;
+            border-right-color: #808080;
+            border-bottom-color: #808080;
+            padding: 3px;
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            width: 700px;
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+        }
+        .title-bar {
+            background: linear-gradient(to right, #000080, #1084d0);
+            color: white;
+            padding: 3px 6px;
+            font-weight: bold;
+            font-size: 13px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .window-content {
+            padding: 15px;
+            background: #ece9d8;
+        }
+        h1 {
+            color: #000080;
+            text-align: center;
+            margin-top: 0;
+            font-size: 18px;
+        }
+        .student-info {
+            text-align: center;
+            margin-bottom: 20px;
+            padding: 8px;
+            background: #d4d0c8;
+            border: 1px solid #808080;
+        }
+        .tasks-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+        .task-item {
+            text-align: center;
+            cursor: pointer;
+            padding: 10px 5px;
+            border: 1px solid transparent;
+        }
+        .task-item:hover {
+            background-color: #316ac5;
+            color: white;
+            border: 1px dotted #316ac5;
+        }
+        .task-icon {
+            width: 32px;
+            height: 32px;
+            margin: 0 auto 5px;
+            background: url('file.png') center/contain no-repeat;
+        }
+        .task-title {
+            font-size: 11px;
+            text-decoration: none;
+            color: black;
+        }
+        .task-item:hover .task-title {
+            color: white;
+        }
+        .button {
+            background: linear-gradient(to bottom, #d4d0c8, #ece9d8);
+            border: 2px solid;
+            border-top-color: #fff;
+            border-left-color: #fff;
+            border-right-color: #808080;
+            border-bottom-color: #808080;
+            padding: 3px 10px;
+            margin: 10px 0;
+            cursor: pointer;
+            font-family: 'Tahoma';
+            font-size: 11px;
+        }
+        .button:hover {
+            background: linear-gradient(to bottom, #eceae0, #f8f6f0);
+        }
+        .button:active {
+            border-top-color: #808080;
+            border-left-color: #808080;
+            border-right-color: #fff;
+            border-bottom-color: #fff;
+        }
+        .taskbar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to bottom, #245edb, #1d52c1);
+            height: 30px;
+            display: flex;
+            align-items: center;
+            padding: 0 5px;
+            border-top: 1px solid #fff;
+        }
+        .start-button {
+            background: linear-gradient(to bottom, #6ca035, #3d751b);
+            color: white;
+            padding: 4px 10px;
+            border: 1px solid;
+            border-top-color: #fff;
+            border-left-color: #fff;
+            border-right-color: #2d4f0f;
+            border-bottom-color: #2d4f0f;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="desktop">
+        <div class="window">
+            <div class="title-bar">
+                <span>Лабораторная работа 3</span>
+                <span style="font-family: 'Arial'; font-size: 16px;">_ □ X</span>
+            </div>
+            <div class="window-content">
+                <button class="button" onclick="location.href='/'">← Назад к списку лабораторных</button>
+                
+                <div class="student-info">
+                    <h2>Ярощук Павел Александрович</h2>
+                    <p>Группа: ИТ2203</p>
+                </div>
+                
+                <h1>Задания лабораторной работы 4</h1>
+                <p style="text-align: center; margin-bottom: 20px; font-size: 12px;">На этой странице представлены все задания 4 лабораторной работы. Для перехода к конкретному заданию нажмите на соответствующую иконку.</p>
+                
+                <div class="tasks-grid">
+                    <div class="task-item" onclick="location.href='task1/index.html'">
+                        <div class="task-icon"></div>
+                        <div class="task-title">Задание 1</div>
+                    </div>
+                    <div class="task-item" onclick="location.href='task2/index.html'">
+                        <div class="task-icon"></div>
+                        <div class="task-title">Задание 2</div>
+                    </div>
+                    <div class="task-item" onclick="location.href='task3/index.html'">
+                        <div class="task-icon"></div>
+                        <div class="task-title">Задание 3</div>
+                    </div>
+                    <div class="task-item" onclick="location.href='task4/index.html'">
+                        <div class="task-icon"></div>
+                        <div class="task-title">Задание 4</div>
+                    </div>
+                    <div class="task-item" onclick="location.href='task5/index.html'">
+                        <div class="task-icon"></div>
+                        <div class="task-title">Задание 5</div>
+                    </div>
+                    <div class="task-item" onclick="location.href='task6/index.html'">
+                        <div class="task-icon"></div>
+                        <div class="task-title">Задание 6</div>
+                    </div>
+                    <div class="task-item" onclick="location.href='task7/index.html'">
+                        <div class="task-icon"></div>
+                        <div class="task-title">Задание 7</div>
+                    </div>
+                    <div class="task-item" onclick="location.href='task8/index.html'">
+                        <div class="task-icon"></div>
+                        <div class="task-title">Задание 8</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="taskbar">
+        <div class="start-button">Пуск</div>
+    </div>
+</body>
+</html>

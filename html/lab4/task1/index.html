@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Лабораторная 4 - Задание 1 - Ярощук Павел Александрович, группа ИТ2203</title>
+    <style>
+        body { 
+            font-family: 'Tahoma', 'Arial', sans-serif; 
+            margin: 0;
+            padding: 0;
+            background: #008080 url('back.png') center/cover no-repeat fixed;
+            color: #000;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .desktop {
+            padding: 20px;
+            height: calc(100vh - 40px);
+            position: relative;
+        }
+        .window {
+            background-color: #ece9d8;
+            border: 2px solid;
+            border-top-color: #fff;
+            border-left-color: #fff;
+            border-right-color: #808080;
+            border-bottom-color: #808080;
+            padding: 3px;
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            width: 500px;
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+        }
+        .title-bar {
+            background: linear-gradient(to right, #000080, #1084d0);
+            color: white;
+            padding: 3px 6px;
+            font-weight: bold;
+            font-size: 13px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .window-content {
+            padding: 15px;
+            background: #ece9d8;
+        }
+        h1 {
+            color: #000080;
+            text-align: center;
+            margin-top: 0;
+            font-size: 18px;
+        }
+        .student-info {
+            text-align: center;
+            margin-bottom: 20px;
+            padding: 8px;
+            background: #d4d0c8;
+            border: 1px solid #808080;
+        }
+        .calc-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .calc-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .calc-input {
+            background: white;
+            border: 2px inset #ece9d8;
+            padding: 4px 6px;
+            font-family: 'Tahoma';
+            font-size: 12px;
+            width: 120px;
+        }
+        .calc-select {
+            background: white;
+            border: 2px inset #ece9d8;
+            padding: 4px 6px;
+            font-family: 'Tahoma';
+            font-size: 12px;
+            width: 120px;
+        }
+        .calc-button {
+            background: linear-gradient(to bottom, #d4d0c8, #ece9d8);
+            border: 2px solid;
+            border-top-color: #fff;
+            border-left-color: #fff;
+            border-right-color: #808080;
+            border-bottom-color: #808080;
+            padding: 4px 12px;
+            cursor: pointer;
+            font-family: 'Tahoma';
+            font-size: 11px;
+            min-width: 40px;
+        }
+        .calc-button:hover {
+            background: linear-gradient(to bottom, #eceae0, #f8f6f0);
+        }
+        .calc-button:active {
+            border-top-color: #808080;
+            border-left-color: #808080;
+            border-right-color: #fff;
+            border-bottom-color: #fff;
+        }
+        .result-display {
+            background: white;
+            border: 2px inset #ece9d8;
+            padding: 6px 8px;
+            font-family: 'Tahoma';
+            font-size: 12px;
+            min-height: 18px;
+            margin-top: 10px;
+        }
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-top: 10px;
+        }
+        .checkbox-container input[type="checkbox"] {
+            width: 13px;
+            height: 13px;
+        }
+        .taskbar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to bottom, #245edb, #1d52c1);
+            height: 30px;
+            display: flex;
+            align-items: center;
+            padding: 0 5px;
+            border-top: 1px solid #fff;
+        }
+        .start-button {
+            background: linear-gradient(to bottom, #6ca035, #3d751b);
+            color: white;
+            padding: 4px 10px;
+            border: 1px solid;
+            border-top-color: #fff;
+            border-left-color: #fff;
+            border-right-color: #2d4f0f;
+            border-bottom-color: #2d4f0f;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        .nav-button {
+            background: linear-gradient(to bottom, #d4d0c8, #ece9d8);
+            border: 2px solid;
+            border-top-color: #fff;
+            border-left-color: #fff;
+            border-right-color: #808080;
+            border-bottom-color: #808080;
+            padding: 3px 10px;
+            margin: 10px 0;
+            cursor: pointer;
+            font-family: 'Tahoma';
+            font-size: 11px;
+        }
+        .nav-button:hover {
+            background: linear-gradient(to bottom, #eceae0, #f8f6f0);
+        }
+        .nav-button:active {
+            border-top-color: #808080;
+            border-left-color: #808080;
+            border-right-color: #fff;
+            border-bottom-color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="desktop">
+        <div class="window">
+            <div class="title-bar">
+                <span>Лабораторная работа 4 - Задание 1</span>
+                <span style="font-family: 'Arial'; font-size: 16px;">_ □ X</span>
+            </div>
+            <div class="window-content">
+                <button class="nav-button" onclick="location.href='../index.html'">← Назад к списку заданий</button>
+    
+                
+                <h1>Улучшенный калькулятор</h1>
+                
+                <div class="calc-container">
+                    <div class="calc-row">
+                        <input type="text" id="operand1" class="calc-input" placeholder="Первый операнд">
+                        <select id="operator" class="calc-select">
+                            <option value="+">+</option>
+                            <option value="-">-</option>
+                            <option value="*">*</option>
+                            <option value="/">/</option>
+                            <option value="sqrt">Квадратный корень</option>
+                            <option value="log">Логарифм</option>
+                        </select>
+                        <input type="text" id="operand2" class="calc-input" placeholder="Второй операнд">
+                        <button id="doCalc" class="calc-button" type="button">=</button>
+                    </div>
+                    <div class="calc-row" id="logBaseRow" style="display: none;">
+                        <label for="logBase">Основание логарифма:</label>
+                        <input type="text" id="logBase" class="calc-input" placeholder="Основание (x>0)">
+                    </div>
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="roundResult">
+                        <label for="roundResult">Округлить до 3-х знаков</label>
+                    </div>
+                    <div class="result-display" id="result" aria-live="polite"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="taskbar">
+        <div class="start-button">Пуск</div>
+    </div>
+
+    <script>
+        'use strict';
+        
+        const $ = (id) => document.getElementById(id);
+        
+        const readNumber = (el) => {
+            const raw = String(el.value).trim();
+            return raw === '' ? NaN : Number(raw);
+        };
+        
+        function calc(a, op, b, base) {
+            switch (op) {
+                case '+': return a + b;
+                case '-': return a - b;
+                case '*': return a * b;
+                case '/': return b === 0 ? NaN : a / b;
+                case 'sqrt': return a < 0 ? NaN : Math.sqrt(a);
+                case 'log': 
+                    if (a <= 0 || base <= 0 || base === 1) return NaN;
+                    return Math.log(a) / Math.log(base);
+                default: return NaN;
+            }
+        }
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            const operator = $('operator');
+            const operand1 = $('operand1');
+            const operand2 = $('operand2');
+            const logBase = $('logBase');
+            const logBaseRow = $('logBaseRow');
+            const doCalc = $('doCalc');
+            const resultEl = $('result');
+            const roundCheckbox = $('roundResult');
+            
+            operator.addEventListener('change', () => {
+                const op = operator.value;
+                
+                if (op === 'sqrt' || op === 'log') {
+                    operand2.disabled = true;
+                    operand2.placeholder = 'Не требуется';
+                    operand2.value = '';
+                    
+                    if (op === 'log') {
+                        logBaseRow.style.display = 'flex';
+                    } else {
+                        logBaseRow.style.display = 'none';
+                    }
+                } else {
+                    operand2.disabled = false;
+                    operand2.placeholder = 'Второй операнд';
+                    logBaseRow.style.display = 'none';
+                }
+            });
+            
+            doCalc.addEventListener('click', () => {
+                const a = readNumber(operand1);
+                const b = readNumber(operand2);
+                const base = readNumber(logBase);
+                const op = operator.value;
+                const round = roundCheckbox.checked;
+                
+                if (Number.isNaN(a)) {
+                    resultEl.textContent = 'Введите первый операнд';
+                    return;
+                }
+                
+                if (op !== 'sqrt' && op !== 'log' && Number.isNaN(b)) {
+                    resultEl.textContent = 'Введите второй операнд';
+                    return;
+                }
+                
+                if (op === '/' && b === 0) {
+                    resultEl.textContent = 'Деление на ноль невозможно';
+                    return;
+                }
+                
+                if (op === 'log') {
+                    if (Number.isNaN(base)) {
+                        resultEl.textContent = 'Введите основание логарифма';
+                        return;
+                    }
+                    
+                    if (base <= 0 || base === 1) {
+                        resultEl.textContent = 'Основание должно быть > 0 и ≠ 1';
+                        return;
+                    }
+                }
+                
+                let res = calc(a, op, b, base);
+                
+                if (Number.isNaN(res)) {
+                    resultEl.textContent = 'Не удалось вычислить';
+                    return;
+                }
+                
+                if (round) {
+                    res = Math.round(res * 1000) / 1000;
+                }
+                
+                resultEl.textContent = String(res);
+            });
+        });
+    </script>
+</body>
+</html>

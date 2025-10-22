@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Лабораторная 4 - Задание 4</title>
+    <style>
+        body { 
+            font-family: 'Tahoma', 'Arial', sans-serif; 
+            margin: 0;
+            padding: 0;
+            background: #008080 url('back.png') center/cover no-repeat fixed;
+            color: #000;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .window {
+            background-color: #ece9d8;
+            border: 2px solid;
+            border-top-color: #fff;
+            border-left-color: #fff;
+            border-right-color: #808080;
+            border-bottom-color: #808080;
+            padding: 3px;
+            width: 400px;
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+        }
+        .title-bar {
+            background: linear-gradient(to right, #000080, #1084d0);
+            color: white;
+            padding: 3px 6px;
+            font-weight: bold;
+            font-size: 13px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .window-content {
+            padding: 20px;
+            background: #ece9d8;
+        }
+        .city-selector {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .city-select {
+            background: white;
+            border: 2px inset #ece9d8;
+            padding: 4px 6px;
+            font-family: 'Tahoma';
+            font-size: 12px;
+            width: 200px;
+        }
+        .clocks-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .clock-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 12px;
+            background: #d4d0c8;
+            border: 1px solid #808080;
+        }
+        .clock-item.selected {
+            background: #316ac5;
+            color: white;
+        }
+        .city-name {
+            font-weight: bold;
+            font-size: 14px;
+        }
+        .clock-time {
+            font-family: 'Courier New', monospace;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .clock-date {
+            font-size: 11px;
+            color: #666;
+        }
+        .clock-item.selected .clock-date {
+            color: #ccc;
+        }
+        .nav-button {
+            background: linear-gradient(to bottom, #d4d0c8, #ece9d8);
+            border: 2px solid;
+            border-top-color: #fff;
+            border-left-color: #fff;
+            border-right-color: #808080;
+            border-bottom-color: #808080;
+            padding: 3px 10px;
+            margin-top: 15px;
+            cursor: pointer;
+            font-family: 'Tahoma';
+            font-size: 11px;
+        }
+        .nav-button:hover {
+            background: linear-gradient(to bottom, #eceae0, #f8f6f0);
+        }
+        .nav-button:active {
+            border-top-color: #808080;
+            border-left-color: #808080;
+            border-right-color: #fff;
+            border-bottom-color: #fff;
+        }
+        .taskbar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to bottom, #245edb, #1d52c1);
+            height: 30px;
+            display: flex;
+            align-items: center;
+            padding: 0 5px;
+            border-top: 1px solid #fff;
+        }
+        .start-button {
+            background: linear-gradient(to bottom, #6ca035, #3d751b);
+            color: white;
+            padding: 4px 10px;
+            border: 1px solid;
+            border-top-color: #fff;
+            border-left-color: #fff;
+            border-right-color: #2d4f0f;
+            border-bottom-color: #2d4f0f;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="window">
+        <div class="title-bar">
+            <span>Часы мирового времени</span>
+            <span style="font-family: 'Arial'; font-size: 16px;">_ □ X</span>
+        </div>
+        <div class="window-content">
+            <div class="city-selector">
+                <select id="citySelect" class="city-select">
+                    <option value="Moscow">Москва</option>
+                    <option value="Tokyo">Токио</option>
+                    <option value="London">Лондон</option>
+                    <option value="NewYork">Нью-Йорк</option>
+                    <option value="Seattle">Сиэтл</option>
+                </select>
+            </div>
+            
+            <div class="clocks-container" id="clocksContainer">
+                <!-- Часы будут добавлены через JavaScript -->
+            </div>
+            
+            <button class="nav-button" onclick="location.href='../index.html'">← Назад к списку заданий</button>
+        </div>
+    </div>
+    
+    <div class="taskbar">
+        <div class="start-button">Пуск</div>
+    </div>
+
+    <script>
+        'use strict';
+        
+        // Настройки часовых поясов
+        const timeZones = {
+            'Moscow': { offset: 3, name: 'Москва' },
+            'Tokyo': { offset: 9, name: 'Токио' },
+            'London': { offset: 0, name: 'Лондон' },
+            'NewYork': { offset: -5, name: 'Нью-Йорк' },
+            'Seattle': { offset: -8, name: 'Сиэтл' }
+        };
+        
+        function getTimeForTimezone(offset) {
+            const now = new Date();
+            const utc = now.getTime() + (now.getTimezoneOffset() * 60000);
+            const time = new Date(utc + (3600000 * offset));
+            return time;
+        }
+        
+        function formatTime(date) {
+            const hours = String(date.getHours()).padStart(2, '0');
+            const minutes = String(date.getMinutes()).padStart(2, '0');
+            const seconds = String(date.getSeconds()).padStart(2, '0');
+            return `${hours}:${minutes}:${seconds}`;
+        }
+        
+        function formatDate(date) {
+            const options = { 
+                day: 'numeric', 
+                month: 'long', 
+                year: 'numeric' 
+            };
+            return date.toLocaleDateString('ru-RU', options);
+        }
+        
+        function updateAllClocks() {
+            const selectedCity = document.getElementById('citySelect').value;
+            const container = document.getElementById('clocksContainer');
+            container.innerHTML = '';
+            
+            Object.keys(timeZones).forEach(cityKey => {
+                const timezone = timeZones[cityKey];
+                const time = getTimeForTimezone(timezone.offset);
+                
+                const clockItem = document.createElement('div');
+                clockItem.className = `clock-item ${cityKey === selectedCity ? 'selected' : ''}`;
+                
+                clockItem.innerHTML = `
+                    <div>
+                        <div class="city-name">${timezone.name}</div>
+                        <div class="clock-date">${formatDate(time)}</div>
+                    </div>
+                    <div class="clock-time">${formatTime(time)}</div>
+                `;
+                
+                container.appendChild(clockItem);
+            });
+        }
+        
+        // Инициализация
+        document.addEventListener('DOMContentLoaded', () => {
+            const citySelect = document.getElementById('citySelect');
+            
+            // Обновление часов при смене города
+            citySelect.addEventListener('change', updateAllClocks);
+            
+            // Обновление времени каждую секунду
+            setInterval(updateAllClocks, 1000);
+            
+            // Первоначальное обновление
+            updateAllClocks();
+        });
+    </script>
+</body>
+</html>

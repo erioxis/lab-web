@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Лабораторная 5 - Задание 2 - Ярощук Павел Александрович, группа ИТ2203</title>
+    <style>
+        body { 
+            font-family: 'Tahoma', 'Arial', sans-serif; 
+            margin: 0;
+            padding: 0;
+            background: #008080 url('back.png') center/cover no-repeat fixed;
+            color: #000;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .desktop {
+            padding: 20px;
+            height: calc(100vh - 40px);
+            position: relative;
+        }
+        .window {
+            background-color: #ece9d8;
+            border: 2px solid;
+            border-top-color: #fff;
+            border-left-color: #fff;
+            border-right-color: #808080;
+            border-bottom-color: #808080;
+            padding: 3px;
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            width: 600px;
+            height: 500px;
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+        }
+        .title-bar {
+            background: linear-gradient(to right, #000080, #1084d0);
+            color: white;
+            padding: 3px 6px;
+            font-weight: bold;
+            font-size: 13px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .window-content {
+            padding: 15px;
+            background: #ece9d8;
+            height: calc(100% - 60px);
+            overflow-y: auto;
+        }
+        h1 {
+            color: #000080;
+            text-align: center;
+            margin-top: 0;
+            font-size: 18px;
+        }
+        .student-info {
+            text-align: center;
+            margin-bottom: 20px;
+            padding: 8px;
+            background: #d4d0c8;
+            border: 1px solid #808080;
+        }
+        .nav-button {
+            background: linear-gradient(to bottom, #d4d0c8, #ece9d8);
+            border: 2px solid;
+            border-top-color: #fff;
+            border-left-color: #fff;
+            border-right-color: #808080;
+            border-bottom-color: #808080;
+            padding: 3px 10px;
+            margin: 10px 0;
+            cursor: pointer;
+            font-family: 'Tahoma';
+            font-size: 11px;
+        }
+        .nav-button:hover {
+            background: linear-gradient(to bottom, #eceae0, #f8f6f0);
+        }
+        .nav-button:active {
+            border-top-color: #808080;
+            border-left-color: #808080;
+            border-right-color: #fff;
+            border-bottom-color: #fff;
+        }
+        
+        /* Стили для задач */
+        .task-input-area {
+            margin: 20px 0;
+            padding: 15px;
+            background: #d4d0c8;
+            border: 2px inset #ece9d8;
+        }
+        .task-textarea {
+            background: white;
+            border: 2px inset #ece9d8;
+            padding: 8px;
+            font-family: 'Tahoma';
+            font-size: 12px;
+            width: calc(100% - 20px);
+            resize: vertical;
+            min-height: 60px;
+        }
+        .add-button {
+            background: linear-gradient(to bottom, #d4d0c8, #ece9d8);
+            border: 2px solid;
+            border-top-color: #fff;
+            border-left-color: #fff;
+            border-right-color: #808080;
+            border-bottom-color: #808080;
+            padding: 4px 12px;
+            margin-top: 10px;
+            cursor: pointer;
+            font-family: 'Tahoma';
+            font-size: 11px;
+        }
+        .add-button:hover {
+            background: linear-gradient(to bottom, #eceae0, #f8f6f0);
+        }
+        .add-button:active {
+            border-top-color: #808080;
+            border-left-color: #808080;
+            border-right-color: #fff;
+            border-bottom-color: #fff;
+        }
+        .task-item {
+            padding: 10px;
+            margin: 8px 0;
+            border: 2px inset #ece9d8;
+            background: white;
+            position: relative;
+        }
+        .task-item:hover {
+            background: #f0f8ff;
+        }
+        .task-actions {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: none;
+        }
+        .task-item:hover .task-actions {
+            display: flex;
+            gap: 5px;
+        }
+        .task-text {
+            word-break: break-word;
+            margin-right: 120px;
+            font-size: 12px;
+        }
+        .task-meta {
+            font-size: 10px;
+            color: #666;
+            margin-bottom: 4px;
+        }
+        .task-btn {
+            background: linear-gradient(to bottom, #d4d0c8, #ece9d8);
+            border: 2px solid;
+            border-top-color: #fff;
+            border-left-color: #fff;
+            border-right-color: #808080;
+            border-bottom-color: #808080;
+            padding: 3px 8px;
+            cursor: pointer;
+            font-family: 'Tahoma';
+            font-size: 10px;
+            min-width: 70px;
+        }
+        .task-btn:hover {
+            background: linear-gradient(to bottom, #eceae0, #f8f6f0);
+        }
+        .task-btn:active {
+            border-top-color: #808080;
+            border-left-color: #808080;
+            border-right-color: #fff;
+            border-bottom-color: #fff;
+        }
+        .copy-btn {
+            background: linear-gradient(to bottom, #008000, #006400);
+            color: white;
+            border-color: #fff #2d4f0f #2d4f0f #fff;
+        }
+        .delete-btn {
+            background: linear-gradient(to bottom, #c00000, #8b0000);
+            color: white;
+            border-color: #fff #5a0000 #5a0000 #fff;
+        }
+        .tasks-container {
+            max-height: 250px;
+            overflow-y: auto;
+            border: 2px inset #ece9d8;
+            padding: 10px;
+            background: #ece9d8;
+        }
+        .taskbar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to bottom, #245edb, #1d52c1);
+            height: 30px;
+            display: flex;
+            align-items: center;
+            padding: 0 5px;
+            border-top: 1px solid #fff;
+        }
+        .start-button {
+            background: linear-gradient(to bottom, #6ca035, #3d751b);
+            color: white;
+            padding: 4px 10px;
+            border: 1px solid;
+            border-top-color: #fff;
+            border-left-color: #fff;
+            border-right-color: #2d4f0f;
+            border-bottom-color: #2d4f0f;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        .hint {
+            font-size: 10px;
+            color: #666;
+            text-align: center;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="desktop">
+        <div class="window">
+            <div class="title-bar">
+                <span>Лабораторная работа 5 - Задание 2</span>
+                <span style="font-family: 'Arial'; font-size: 16px;">_ □ X</span>
+            </div>
+            <div class="window-content">
+                <button class="nav-button" onclick="location.href='../index.html'">← Назад к списку заданий</button>
+                
+                <h1>Простой ToDo список</h1>
+                
+                <div class="student-info">
+                    <h2>Ярощук Павел Александрович</h2>
+                    <p>Группа: ИТ2203</p>
+                </div>
+                
+                <div class="task-input-area">
+                    <textarea id="task-input" class="task-textarea" placeholder="Введите задачу..." rows="3"></textarea>
+                    <button id="add-task" class="add-button">Добавить задачу</button>
+                    <div class="hint">Для быстрого добавления нажмите Ctrl + Enter</div>
+                </div>
+                
+                <div class="tasks-container">
+                    <div id="tasks-list"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="taskbar">
+        <div class="start-button">Пуск</div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

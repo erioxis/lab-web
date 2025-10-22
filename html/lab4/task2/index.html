@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Лабораторная 4 - Задание 2 - Ярощук Павел Александрович, группа ИТ2203</title>
+    <style>
+        body { 
+            font-family: 'Tahoma', 'Arial', sans-serif; 
+            margin: 0;
+            padding: 0;
+            background: #008080 url('back.png') center/cover no-repeat fixed;
+            color: #000;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .desktop {
+            padding: 20px;
+            height: calc(100vh - 40px);
+            position: relative;
+        }
+        .window {
+            background-color: #ece9d8;
+            border: 2px solid;
+            border-top-color: #fff;
+            border-left-color: #fff;
+            border-right-color: #808080;
+            border-bottom-color: #808080;
+            padding: 3px;
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            width: 500px;
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+        }
+        .title-bar {
+            background: linear-gradient(to right, #000080, #1084d0);
+            color: white;
+            padding: 3px 6px;
+            font-weight: bold;
+            font-size: 13px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .window-content {
+            padding: 15px;
+            background: #ece9d8;
+        }
+        h1 {
+            color: #000080;
+            text-align: center;
+            margin-top: 0;
+            font-size: 18px;
+        }
+        .student-info {
+            text-align: center;
+            margin-bottom: 20px;
+            padding: 8px;
+            background: #d4d0c8;
+            border: 1px solid #808080;
+        }
+        .cards-container {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .cards-container img {
+            opacity: .2;
+            height: 36px;
+            transition: opacity .2s ease;
+        }
+        .cards-container img.hl {
+            opacity: 1;
+        }
+        .input-group {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 10px;
+            align-items: center;
+        }
+        .card-input {
+            background: white;
+            border: 2px inset #ece9d8;
+            padding: 4px 6px;
+            font-family: 'Tahoma';
+            font-size: 12px;
+            width: 200px;
+            letter-spacing: 1px;
+        }
+        .check-button {
+            background: linear-gradient(to bottom, #d4d0c8, #ece9d8);
+            border: 2px solid;
+            border-top-color: #fff;
+            border-left-color: #fff;
+            border-right-color: #808080;
+            border-bottom-color: #808080;
+            padding: 4px 12px;
+            cursor: pointer;
+            font-family: 'Tahoma';
+            font-size: 11px;
+        }
+        .check-button:hover {
+            background: linear-gradient(to bottom, #eceae0, #f8f6f0);
+        }
+        .check-button:active {
+            border-top-color: #808080;
+            border-left-color: #808080;
+            border-right-color: #fff;
+            border-bottom-color: #fff;
+        }
+        .result-display {
+            background: white;
+            border: 2px inset #ece9d8;
+            padding: 6px 8px;
+            font-family: 'Tahoma';
+            font-size: 12px;
+            min-height: 18px;
+            margin-top: 10px;
+            color: #374151;
+        }
+        .nav-button {
+            background: linear-gradient(to bottom, #d4d0c8, #ece9d8);
+            border: 2px solid;
+            border-top-color: #fff;
+            border-left-color: #fff;
+            border-right-color: #808080;
+            border-bottom-color: #808080;
+            padding: 3px 10px;
+            margin: 10px 0;
+            cursor: pointer;
+            font-family: 'Tahoma';
+            font-size: 11px;
+        }
+        .nav-button:hover {
+            background: linear-gradient(to bottom, #eceae0, #f8f6f0);
+        }
+        .nav-button:active {
+            border-top-color: #808080;
+            border-left-color: #808080;
+            border-right-color: #fff;
+            border-bottom-color: #fff;
+        }
+        .taskbar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to bottom, #245edb, #1d52c1);
+            height: 30px;
+            display: flex;
+            align-items: center;
+            padding: 0 5px;
+            border-top: 1px solid #fff;
+        }
+        .start-button {
+            background: linear-gradient(to bottom, #6ca035, #3d751b);
+            color: white;
+            padding: 4px 10px;
+            border: 1px solid;
+            border-top-color: #fff;
+            border-left-color: #fff;
+            border-right-color: #2d4f0f;
+            border-bottom-color: #2d4f0f;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="desktop">
+        <div class="window">
+            <div class="title-bar">
+                <span>Лабораторная работа 4 - Задание 2</span>
+                <span style="font-family: 'Arial'; font-size: 16px;">_ □ X</span>
+            </div>
+            <div class="window-content">
+                <button class="nav-button" onclick="location.href='../index.html'">← Назад к списку заданий</button>
+                
+                <h1>Идентификация платежных карт</h1>
+                
+                <div class="cards-container" aria-hidden="true">
+                    <img src="img/visa.png" id="visa" alt="VISA">
+                    <img src="img/mc.png" id="mc" alt="MasterCard">
+                    <img src="img/visael.png" id="visael" alt="Visa Electron">
+                    <img src="img/maestro.png" id="maestro" alt="Maestro">
+                    <img src="img/jcb.png" id="jcb" alt="JCB">
+                    <img src="img/mir.png" id="mir" alt="МИР">
+                    <img src="img/amex.png" id="amex" alt="American Express">
+                    <img src="img/unionpay.png" id="unionpay" alt="UnionPay">
+                </div>
+                
+                <div class="input-group">
+                    <input type="text" id="cardNumber" class="card-input" value="4300111122223333" placeholder="16 цифр" maxlength="19">
+                    <button id="cardCheck" class="check-button" type="button">Проверить</button>
+                </div>
+                
+                <div class="result-display" id="result"></div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="taskbar">
+        <div class="start-button">Пуск</div>
+    </div>
+
+    <script>
+        'use strict';
+        
+        const $ = (id) => document.getElementById(id);
+        
+        // Удаляет всё, кроме цифр (нормализация вводимой строки)
+        const digitsOnly = (s) => s.replace(/\D+/g, '');
+        
+        // Форматирование номера карты с пробелами
+        const formatCardNumber = (num) => {
+            const digits = digitsOnly(num);
+            return digits.replace(/(\d{4})(?=\d)/g, '$1 ');
+        };
+        
+        // Проверка контрольной суммы по алгоритму Луна
+        const luhnCheck = (num) => {
+            const digits = digitsOnly(num);
+            let sum = 0;
+            let isEven = false;
+            
+            for (let i = digits.length - 1; i >= 0; i--) {
+                let digit = parseInt(digits[i]);
+                
+                if (isEven) {
+                    digit *= 2;
+                    if (digit > 9) {
+                        digit -= 9;
+                    }
+                }
+                
+                sum += digit;
+                isEven = !isEven;
+            }
+            
+            return sum % 10 === 0;
+        };
+        
+        // Определение бренда по номеру карты
+// Определение бренда по номеру карты
+    function detectBrand(cardNumber) {
+        const num = digitsOnly(cardNumber);
+        
+        // Проверяем специфичные префиксы в порядке приоритета
+        
+        // МИР: начинается с 2200-2204
+        if (/^220[0-4]/.test(num)) {
+            return 'mir';
+        }
+        
+        // Visa Electron: определенные префиксы
+        if (/^(4026|417500|4508|4844|4913|4917)/.test(num)) {
+            return 'visael';
+        }
+        
+        // VISA: начинается с 4
+        if (/^4/.test(num)) {
+            return 'visa';
+        }
+        
+        // MasterCard: начинается с 51-55 или 2221-2720
+        if (/^(5[1-5]|2[2-7][0-9]{2})/.test(num)) {
+            return 'mc';
+        }
+        
+        // Maestro: начинается с 50, 56-69
+        if (/^(50|5[6-9]|6[0-9])/.test(num)) {
+            return 'maestro';
+        }
+        
+        // JCB: начинается с 35
+        if (/^35/.test(num)) {
+            return 'jcb';
+        }
+        
+        // American Express: начинается с 34 или 37
+        if (/^3[47]/.test(num)) {
+            return 'amex';
+        }
+        
+        // UnionPay: начинается с 62
+        if (/^62/.test(num)) {
+            return 'unionpay';
+        }
+        
+        return null;
+    }
+        
+        // Снимает выделение с активной иконки
+        function clearHighlight() {
+            const active = document.querySelector('.cards-container img.hl');
+            if (active) active.classList.remove('hl');
+        }
+        
+        // Ждем полной загрузки DOM
+        document.addEventListener('DOMContentLoaded', () => {
+            const input = $('cardNumber');
+            const button = $('cardCheck');
+            const out = $('result');
+            
+            // Форматирование номера карты при вводе
+            input.addEventListener('input', () => {
+                clearHighlight();
+                
+                // Сохраняем позицию курсора
+                const cursorPosition = input.selectionStart;
+                const value = input.value;
+                
+                // Форматируем номер
+                const formatted = formatCardNumber(value);
+                input.value = formatted;
+                
+                // Восстанавливаем позицию курсора с учетом добавленных пробелов
+                const addedSpaces = formatted.length - value.length;
+                const newCursorPosition = cursorPosition + addedSpaces;
+                input.setSelectionRange(newCursorPosition, newCursorPosition);
+            });
+            
+            // Обработка клика по кнопке "Проверить"
+            button.addEventListener('click', () => {
+                clearHighlight();
+                const raw = String(input.value);
+                const num = digitsOnly(raw); // нормализуем ввод
+                
+                // Проверка длины номера карты
+                if (num.length < 13 || num.length > 19) {
+                    out.textContent = 'Неверно введен номер карты (должно быть 13-19 цифр)';
+                    return;
+                }
+                
+                // Проверка алгоритмом Луна
+                if (!luhnCheck(num)) {
+                    out.textContent = 'Номер карты не прошел проверку контрольной суммы';
+                    return;
+                }
+                
+                out.textContent = 'Номер карты правильный';
+                const brandId = detectBrand(num);
+                
+                if (brandId) {
+                    const img = $(brandId);
+                    if (img) img.classList.add('hl'); // выделяем иконку карты
+                    
+                    // Добавляем информацию о бренде
+                    const brandNames = {
+                        'visa': 'VISA',
+                        'mc': 'MasterCard',
+                        'visael': 'Visa Electron',
+                        'maestro': 'Maestro',
+                        'jcb': 'JCB',
+                        'mir': 'МИР',
+                        'amex': 'American Express',
+                        'unionpay': 'UnionPay'
+                    };
+                    
+                    out.textContent += ` - ${brandNames[brandId]}`;
+                } else {
+                    out.textContent += ' - Неизвестный бренд';
+                }
+                
+                // Форматируем номер карты
+                input.value = formatCardNumber(num);
+            });
+        });
+    </script>
+</body>
+</html>
